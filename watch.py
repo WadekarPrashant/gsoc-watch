@@ -1,0 +1,218 @@
+# -*- coding: utf-8 -*-
+"""GSoC issue watcher - cloud edition (runs on GitHub Actions).
+
+Finds newcomer-friendly issues that are genuinely free to claim and pushes a
+phone notification via ntfy.sh when a new one appears.
+
+Efficiency note: listing issues is cheap, but the "is it really free?" checks
+(timeline + comments, 2 calls each) are not. So we only deep-check issue
+numbers we have never seen before. A typical run costs ~25 API calls instead
+of several hundred, which keeps us well inside the Actions token's hourly
+limit.
+
+Env vars:
+  GITHUB_TOKEN  required - provided automatically by Actions
+  NTFY_TOPIC    required - your private ntfy topic name
+  NTFY_SERVER   optional - defaults to https://ntfy.sh
+"""
+import json
+import os
+import re
+import sys
+import time
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+STATE = os.path.join(HERE, "seen.json")
+LATEST = os.path.join(HERE, "latest.md")
+
+TOKEN = os.environ.get("GITHUB_TOKEN", "")
+NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
+NTFY_SERVER = os.environ.get("NTFY_SERVER", "https://ntfy.sh").rstrip("/")
+
+REPOS = [
+    ("zulip/zulip", ["help wanted"]),
+    ("zulip/python-zulip-api", ["help wanted", "good first issue"]),
+    ("zulip/zulip-terminal", ["help wanted", "good first issue"]),
+    ("RocketChat/Rocket.Chat", ["good first issue", "help wanted"]),
+    ("oppia/oppia", ["good first issue", "starter issue"]),
+    ("OWASP/Nest", ["good first issue", "help wanted"]),
+    ("numpy/numpy", ["sprintable"]),
+    ("matplotlib/matplotlib", ["first-contribution", "Difficulty: Easy"]),
+    ("pandas-dev/pandas", ["good first issue"]),
+    ("scikit-learn/scikit-learn", ["good first issue", "Easy"]),
+]
+
+CLAIM = re.compile(
+    r"(@\w*bot\s+claim|\bclaim(ing|ed)?\b|\bi.{0,3}ll take\b|working on (this|it)|"
+    r"assign (this )?to me|like to work on|can i work|i am working|i.{0,3}m working|"
+    r"picking (this )?up|started work)", re.I)
+ABANDON = re.compile(
+    r"(abandon|unassigned from this issue|no longer (working|active)|"
+    r"not working on (this|it)|dropping this|free to (take|claim))", re.I)
+
+
+def api(path, retries=2):
+    req = urllib.request.Request(
+        "https://api.github.com" + path,
+        headers={"Authorization": f"Bearer {TOKEN}",
+                 "Accept": "application/vnd.github+json",
+                 "User-Agent": "gsoc-watch"})
+    for attempt in range(retries + 1):
+        try:
+            return json.load(urllib.request.urlopen(req, timeout=60))
+        except Exception as exc:  # noqa: BLE001
+            if attempt == retries:
+                print(f"  ! {exc} ({path[:70]})", flush=True)
+                return None
+            time.sleep(2 * (attempt + 1))
+    return None
+
+
+def is_free(repo, num):
+    """Expensive check: no open linked PR, and no live claim.
+
+    Returns True/False, or None if the API calls failed. None matters: a
+    failed call must NOT be read as "free", and the issue must stay unseen
+    so the next run re-checks it.
+    """
+    timeline = api(f"/repos/{repo}/issues/{num}/timeline?per_page=100")
+    if timeline is None:
+        return None
+    for ev in timeline:
+        if ev.get("event") in ("cross-referenced", "connected"):
+            src = (ev.get("source") or {}).get("issue") or {}
+            if src.get("pull_request") and src.get("state") == "open":
+                return False
+
+    comments = api(f"/repos/{repo}/issues/{num}/comments?per_page=100")
+    if comments is None:
+        return None
+    last_claim = last_release = None
+    for c in comments:
+        body = c.get("body") or ""
+        if ABANDON.search(body):
+            last_release = c["created_at"]
+        elif CLAIM.search(body):
+            last_claim = c["created_at"]
+    if last_claim is None:
+        return True
+    if last_release and last_release > last_claim:
+        return True
+    age = (datetime.now(timezone.utc)
+           - datetime.fromisoformat(last_claim.replace("Z", "+00:00"))).days
+    return age > 45
+
+
+def notify(new):
+    if not NTFY_TOPIC:
+        print("NTFY_TOPIC not set - skipping push", flush=True)
+        return
+    if len(new) == 1:
+        i = new[0]
+        title = f"Free issue: {i['repo']}"
+        body = f"#{i['num']} {i['title']}"
+        click = i["url"]
+    else:
+        title = f"{len(new)} free GSoC issues"
+        body = "\n".join(f"{i['repo']}#{i['num']} {i['title'][:70]}" for i in new[:5])
+        click = new[0]["url"]
+
+    req = urllib.request.Request(
+        f"{NTFY_SERVER}/{NTFY_TOPIC}",
+        data=body.encode("utf-8"),
+        headers={
+            "Title": title.encode("ascii", "replace").decode(),
+            "Priority": "high",
+            "Tags": "rocket",
+            "Click": click,
+        })
+    try:
+        urllib.request.urlopen(req, timeout=30)
+        print(f"pushed notification for {len(new)} issue(s)", flush=True)
+    except Exception as exc:  # noqa: BLE001
+        print(f"  ! push failed: {exc}", flush=True)
+
+
+def main():
+    if not TOKEN:
+        print("ERROR: GITHUB_TOKEN not set")
+        return 1
+
+    state = {"seen": [], "free": []}
+    if os.path.exists(STATE):
+        try:
+            state = json.load(open(STATE, encoding="utf-8"))
+        except (OSError, ValueError):
+            pass
+    seen = set(state.get("seen", []))
+    first_run = not seen
+
+    # Cheap pass: list candidate issues.
+    candidates = {}
+    for repo, labels in REPOS:
+        for label in labels:
+            for it in api(f"/repos/{repo}/issues?state=open&assignee=none"
+                          f"&labels={urllib.parse.quote(label)}"
+                          "&sort=created&direction=desc&per_page=40") or []:
+                if "pull_request" in it:
+                    continue
+                candidates[f"{repo}#{it['number']}"] = {
+                    "repo": repo, "num": it["number"], "title": it["title"],
+                    "url": it["html_url"], "created": it["created_at"][:10],
+                }
+
+    # Expensive pass: only on keys we have never evaluated.
+    unseen = [k for k in candidates if k not in seen]
+    print(f"{len(candidates)} candidate(s), {len(unseen)} never checked before",
+          flush=True)
+
+    new_free = []
+    evaluated = set()
+    for key in unseen:
+        c = candidates[key]
+        verdict = is_free(c["repo"], c["num"])
+        if verdict is None:
+            continue          # leave unseen; re-check next run
+        evaluated.add(key)
+        if verdict:
+            new_free.append(c)
+
+    still_free = [candidates[k] for k in state.get("free", []) if k in candidates]
+    all_free = still_free + new_free
+
+    # Only record issues we actually managed to evaluate.
+    json.dump({"seen": sorted(seen | evaluated),
+               "free": sorted({f"{i['repo']}#{i['num']}" for i in all_free}),
+               "updated": datetime.now(timezone.utc).isoformat()},
+              open(STATE, "w", encoding="utf-8"), indent=1)
+
+    with open(LATEST, "w", encoding="utf-8") as fh:
+        fh.write(f"# GSoC watcher\n\nLast run: "
+                 f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC\n\n")
+        if new_free and not first_run:
+            fh.write(f"## New this run ({len(new_free)})\n\n")
+            for i in new_free:
+                fh.write(f"- **[{i['repo']}#{i['num']}]({i['url']})** {i['title']}\n")
+            fh.write("\n")
+        fh.write(f"## Currently free ({len(all_free)})\n\n")
+        for i in sorted(all_free, key=lambda x: (x["repo"], -x["num"])):
+            fh.write(f"- [{i['repo']}#{i['num']}]({i['url']}) {i['title']}\n")
+
+    if first_run:
+        print(f"First run: recorded {len(all_free)} free issue(s), no push.",
+              flush=True)
+    elif new_free:
+        print(f"{len(new_free)} NEW free issue(s)", flush=True)
+        for i in new_free:
+            print(f"   {i['repo']}#{i['num']} {i['title'][:70]}", flush=True)
+        notify(new_free)
+    else:
+        print(f"No new issues ({len(all_free)} still free)", flush=True)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
