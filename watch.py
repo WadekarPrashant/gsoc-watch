@@ -171,6 +171,18 @@ def main():
         print("ERROR: GITHUB_TOKEN not set")
         return 1
 
+    # --test exercises the notification path itself. Worth having: an ordinary
+    # run only calls notify() when something new turns up, so a misnamed secret
+    # would otherwise stay hidden until the first real alert failed silently.
+    if "--test" in sys.argv:
+        print("Sending a test notification...", flush=True)
+        notify([{
+            "repo": "zulip/zulip-terminal", "num": 687,
+            "title": "TEST - notification path is working",
+            "url": "https://github.com/zulip/zulip-terminal/issues/687",
+        }])
+        return 0
+
     state = {"seen": [], "free": []}
     if os.path.exists(STATE):
         try:

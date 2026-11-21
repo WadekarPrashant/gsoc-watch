@@ -4,7 +4,12 @@ on:
   schedule:
     # Every 30 minutes. GitHub may delay scheduled runs at busy times.
     - cron: "*/30 * * * *"
-  workflow_dispatch: {}   # lets you trigger a run by hand from the Actions tab
+  workflow_dispatch:      # lets you trigger a run by hand from the Actions tab
+    inputs:
+      test_notification:
+        description: "Send a test notification instead of checking for issues"
+        type: boolean
+        default: false
 
 permissions:
   contents: write         # needed to commit seen.json back
@@ -29,7 +34,7 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python watch.py
+        run: python watch.py ${{ inputs.test_notification && '--test' || '' }}
 
       - name: Save state
         run: |
