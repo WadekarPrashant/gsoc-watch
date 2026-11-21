@@ -29,6 +29,9 @@ STATE = os.path.join(HERE, "seen.json")
 LATEST = os.path.join(HERE, "latest.md")
 
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
+# Telegram is used when a bot token is present; ntfy is the fallback.
+TG_TOKEN = os.environ.get("TELEGRAM_TOKEN", "")
+TG_CHAT = os.environ.get("TELEGRAM_CHAT_ID", "")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
 NTFY_SERVER = os.environ.get("NTFY_SERVER", "https://ntfy.sh").rstrip("/")
 
@@ -106,34 +109,61 @@ def is_free(repo, num):
     return age > 45
 
 
-def notify(new):
-    if not NTFY_TOPIC:
-        print("NTFY_TOPIC not set - skipping push", flush=True)
-        return
+def send_telegram(new):
+    lines = ["*New GSoC issue%s free to claim*" % ("s" if len(new) > 1 else ""), ""]
+    for i in new[:10]:
+        title = (i["title"].replace("[", "(").replace("]", ")")
+                 .replace("*", "").replace("_", "").replace("`", ""))
+        lines.append(f"[{i['repo']}#{i['num']}]({i['url']})")
+        lines.append(f"{title}")
+        lines.append("")
+    if len(new) > 10:
+        lines.append(f"...and {len(new) - 10} more")
+    payload = json.dumps({
+        "chat_id": TG_CHAT,
+        "text": "\n".join(lines),
+        "parse_mode": "Markdown",
+        "disable_web_page_preview": True,
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage",
+        data=payload, headers={"Content-Type": "application/json"})
+    urllib.request.urlopen(req, timeout=30)
+
+
+def send_ntfy(new):
     if len(new) == 1:
         i = new[0]
-        title = f"Free issue: {i['repo']}"
-        body = f"#{i['num']} {i['title']}"
-        click = i["url"]
+        title, body, click = f"Free issue: {i['repo']}", f"#{i['num']} {i['title']}", i["url"]
     else:
         title = f"{len(new)} free GSoC issues"
         body = "\n".join(f"{i['repo']}#{i['num']} {i['title'][:70]}" for i in new[:5])
         click = new[0]["url"]
-
     req = urllib.request.Request(
-        f"{NTFY_SERVER}/{NTFY_TOPIC}",
-        data=body.encode("utf-8"),
-        headers={
-            "Title": title.encode("ascii", "replace").decode(),
-            "Priority": "high",
-            "Tags": "rocket",
-            "Click": click,
-        })
-    try:
-        urllib.request.urlopen(req, timeout=30)
-        print(f"pushed notification for {len(new)} issue(s)", flush=True)
-    except Exception as exc:  # noqa: BLE001
-        print(f"  ! push failed: {exc}", flush=True)
+        f"{NTFY_SERVER}/{NTFY_TOPIC}", data=body.encode("utf-8"),
+        headers={"Title": title.encode("ascii", "replace").decode(),
+                 "Priority": "high", "Tags": "rocket", "Click": click})
+    urllib.request.urlopen(req, timeout=30)
+
+
+def notify(new):
+    sent = False
+    if TG_TOKEN and TG_CHAT:
+        try:
+            send_telegram(new)
+            print(f"telegram: pushed {len(new)} issue(s)", flush=True)
+            sent = True
+        except Exception as exc:  # noqa: BLE001
+            print(f"  ! telegram failed: {exc}", flush=True)
+    if NTFY_TOPIC:
+        try:
+            send_ntfy(new)
+            print(f"ntfy: pushed {len(new)} issue(s)", flush=True)
+            sent = True
+        except Exception as exc:  # noqa: BLE001
+            print(f"  ! ntfy failed: {exc}", flush=True)
+    if not sent:
+        print("WARNING: no notification channel configured or all failed", flush=True)
 
 
 def main():
