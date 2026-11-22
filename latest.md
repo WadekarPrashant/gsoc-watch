@@ -1,9 +1,14 @@
 # GSoC watcher
 
-Last run: 2026-11-22 05:54 UTC
+Last run: 2026-11-22 14:21 UTC
 
-## Currently free (34)
+## New this run (1)
 
+- **[matplotlib/matplotlib#32641](https://github.com/matplotlib/matplotlib/issues/32641)** [Bug]: agg.path.chunksize leaves gaps in lines at chunk boundaries
+
+## Currently free (35)
+
+- [matplotlib/matplotlib#32641](https://github.com/matplotlib/matplotlib/issues/32641) [Bug]: agg.path.chunksize leaves gaps in lines at chunk boundaries
 - [matplotlib/matplotlib#32556](https://github.com/matplotlib/matplotlib/issues/32556) [Bug]: GLib io error if sigint is handled while some icon is loaded
 - [matplotlib/matplotlib#32514](https://github.com/matplotlib/matplotlib/issues/32514) [Bug]: IBM unix system services - Fonts can'be read in - no labelling is possible
 - [matplotlib/matplotlib#32505](https://github.com/matplotlib/matplotlib/issues/32505) [Bug]: pgf_rcupdate1 in test_backend_pgf.py::test_rcupdate fails for TeX Live 2026
