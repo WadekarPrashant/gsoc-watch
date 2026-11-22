@@ -37,7 +37,9 @@
   "oppia/oppia#12912",
   "oppia/oppia#18422",
   "oppia/oppia#18470",
+  "oppia/oppia#18729",
   "oppia/oppia#18876",
+  "oppia/oppia#21166",
   "oppia/oppia#21308",
   "oppia/oppia#21869",
   "oppia/oppia#21970",
@@ -144,6 +146,7 @@
   "numpy/numpy#21532",
   "oppia/oppia#12912",
   "oppia/oppia#18470",
+  "oppia/oppia#21166",
   "oppia/oppia#21869",
   "oppia/oppia#21970",
   "oppia/oppia#23496",
@@ -156,7 +159,6 @@
   "zulip/zulip#29028",
   "zulip/zulip#33276",
   "zulip/zulip#34006",
-  "zulip/zulip#7719",
   "zulip/zulip-terminal#1264",
   "zulip/zulip-terminal#1344",
   "zulip/zulip-terminal#1525",
@@ -168,5 +170,5 @@
   "zulip/zulip-terminal#898",
   "zulip/zulip-terminal#938"
  ],
- "updated": "2026-11-22T14:21:29.728718+00:00"
+ "updated": "2026-11-22T20:47:46.742037+00:00"
 }
