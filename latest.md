@@ -1,8 +1,12 @@
 # GSoC watcher
 
-Last run: 2026-11-23 09:41 UTC
+Last run: 2026-11-23 21:57 UTC
 
-## Currently free (36)
+## New this run (1)
+
+- **[zulip/zulip#19278](https://github.com/zulip/zulip/issues/19278)** Make remote servers respect our rate limits on requests to the push bouncer
+
+## Currently free (34)
 
 - [matplotlib/matplotlib#32650](https://github.com/matplotlib/matplotlib/issues/32650) [Bug]: savefig to PNG raises 'failed to load glyph' for small text in macOS Helvetica (Regular) with matplotlib 3.11.0 and 3.11.2
 - [matplotlib/matplotlib#32641](https://github.com/matplotlib/matplotlib/issues/32641) [Bug]: agg.path.chunksize leaves gaps in lines at chunk boundaries
@@ -18,7 +22,6 @@ Last run: 2026-11-23 09:41 UTC
 - [oppia/oppia#23496](https://github.com/oppia/oppia/issues/23496) [Feature Request]: Enforce the strict type checks
 - [oppia/oppia#21970](https://github.com/oppia/oppia/issues/21970) Implement missing domain objects with full `validate()` function.
 - [oppia/oppia#21869](https://github.com/oppia/oppia/issues/21869) Implement validation job for prod models inheriting from base models
-- [oppia/oppia#21166](https://github.com/oppia/oppia/issues/21166) [Feature Request]: Allow to unpublish the stories on temporary basis
 - [oppia/oppia#18470](https://github.com/oppia/oppia/issues/18470) [Feature Request]: Improve the user experience for adding topics to the list of topics in the classroom admin page.
 - [oppia/oppia#12912](https://github.com/oppia/oppia/issues/12912) Fix pylint problems
 - [oppia/oppia#8015](https://github.com/oppia/oppia/issues/8015) Backend api service in frontend should return domain object instead of dict
@@ -28,8 +31,8 @@ Last run: 2026-11-23 09:41 UTC
 - [zulip/zulip#33276](https://github.com/zulip/zulip/issues/33276) Optimize topic cache calculation for rendering `near`/`with` links in automated notices after moving topics.
 - [zulip/zulip#29028](https://github.com/zulip/zulip/issues/29028) Show message edit button while saving changes
 - [zulip/zulip#28703](https://github.com/zulip/zulip/issues/28703) Emoji picker self-closing on touchscreen when search box lower than keyboard
-- [zulip/zulip#24228](https://github.com/zulip/zulip/issues/24228) Re-rendering issue when clicking on the topic name.
 - [zulip/zulip#24044](https://github.com/zulip/zulip/issues/24044) Disallow spaces & special keywords in Code Playground language field
+- [zulip/zulip#19278](https://github.com/zulip/zulip/issues/19278) Make remote servers respect our rate limits on requests to the push bouncer
 - [zulip/zulip-terminal#1525](https://github.com/zulip/zulip-terminal/issues/1525) Add web app hotkeys for message formatting during compose
 - [zulip/zulip-terminal#1344](https://github.com/zulip/zulip-terminal/issues/1344) TRACKING: Migrate internal code to use Direct Message terminology
 - [zulip/zulip-terminal#1264](https://github.com/zulip/zulip-terminal/issues/1264) Add subscribe/unsubscribe marker lines to message list (historical flag)
@@ -37,6 +40,5 @@ Last run: 2026-11-23 09:41 UTC
 - [zulip/zulip-terminal#898](https://github.com/zulip/zulip-terminal/issues/898) Copy/pasting links to messages
 - [zulip/zulip-terminal#767](https://github.com/zulip/zulip-terminal/issues/767) Add secure notifications for WSL
 - [zulip/zulip-terminal#690](https://github.com/zulip/zulip-terminal/issues/690) Support receiving message ids to delete in bulk.
-- [zulip/zulip-terminal#687](https://github.com/zulip/zulip-terminal/issues/687) Show text form of emoji in user full names
 - [zulip/zulip-terminal#496](https://github.com/zulip/zulip-terminal/issues/496) Refactor index to better support unread messages
 - [zulip/zulip-terminal#434](https://github.com/zulip/zulip-terminal/issues/434) Handle `read_message` events from server.
