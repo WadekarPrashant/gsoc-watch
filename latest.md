@@ -1,10 +1,6 @@
 # GSoC watcher
 
-Last run: 2026-11-23 01:28 UTC
-
-## New this run (1)
-
-- **[matplotlib/matplotlib#32650](https://github.com/matplotlib/matplotlib/issues/32650)** [Bug]: savefig to PNG raises 'failed to load glyph' for small text in macOS Helvetica (Regular) with matplotlib 3.11.0 and 3.11.2
+Last run: 2026-11-23 09:41 UTC
 
 ## Currently free (36)
 
