@@ -27,6 +27,7 @@
   "matplotlib/matplotlib#32611",
   "matplotlib/matplotlib#32630",
   "matplotlib/matplotlib#32641",
+  "matplotlib/matplotlib#32650",
   "numpy/numpy#13172",
   "numpy/numpy#15567",
   "numpy/numpy#15601",
@@ -140,6 +141,7 @@
   "matplotlib/matplotlib#32514",
   "matplotlib/matplotlib#32556",
   "matplotlib/matplotlib#32641",
+  "matplotlib/matplotlib#32650",
   "numpy/numpy#15567",
   "numpy/numpy#15859",
   "numpy/numpy#21164",
@@ -170,5 +172,5 @@
   "zulip/zulip-terminal#898",
   "zulip/zulip-terminal#938"
  ],
- "updated": "2026-11-22T20:47:46.742037+00:00"
+ "updated": "2026-11-23T01:28:33.692729+00:00"
 }

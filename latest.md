@@ -1,13 +1,14 @@
 # GSoC watcher
 
-Last run: 2026-11-22 20:47 UTC
+Last run: 2026-11-23 01:28 UTC
 
 ## New this run (1)
 
-- **[oppia/oppia#21166](https://github.com/oppia/oppia/issues/21166)** [Feature Request]: Allow to unpublish the stories on temporary basis
+- **[matplotlib/matplotlib#32650](https://github.com/matplotlib/matplotlib/issues/32650)** [Bug]: savefig to PNG raises 'failed to load glyph' for small text in macOS Helvetica (Regular) with matplotlib 3.11.0 and 3.11.2
 
-## Currently free (35)
+## Currently free (36)
 
+- [matplotlib/matplotlib#32650](https://github.com/matplotlib/matplotlib/issues/32650) [Bug]: savefig to PNG raises 'failed to load glyph' for small text in macOS Helvetica (Regular) with matplotlib 3.11.0 and 3.11.2
 - [matplotlib/matplotlib#32641](https://github.com/matplotlib/matplotlib/issues/32641) [Bug]: agg.path.chunksize leaves gaps in lines at chunk boundaries
 - [matplotlib/matplotlib#32556](https://github.com/matplotlib/matplotlib/issues/32556) [Bug]: GLib io error if sigint is handled while some icon is loaded
 - [matplotlib/matplotlib#32514](https://github.com/matplotlib/matplotlib/issues/32514) [Bug]: IBM unix system services - Fonts can'be read in - no labelling is possible
