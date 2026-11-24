@@ -1,12 +1,8 @@
 # GSoC watcher
 
-Last run: 2026-11-23 21:57 UTC
+Last run: 2026-11-24 05:53 UTC
 
-## New this run (1)
-
-- **[zulip/zulip#19278](https://github.com/zulip/zulip/issues/19278)** Make remote servers respect our rate limits on requests to the push bouncer
-
-## Currently free (34)
+## Currently free (33)
 
 - [matplotlib/matplotlib#32650](https://github.com/matplotlib/matplotlib/issues/32650) [Bug]: savefig to PNG raises 'failed to load glyph' for small text in macOS Helvetica (Regular) with matplotlib 3.11.0 and 3.11.2
 - [matplotlib/matplotlib#32641](https://github.com/matplotlib/matplotlib/issues/32641) [Bug]: agg.path.chunksize leaves gaps in lines at chunk boundaries
@@ -30,7 +26,6 @@ Last run: 2026-11-23 21:57 UTC
 - [zulip/zulip#34006](https://github.com/zulip/zulip/issues/34006) Improve how message move history is displayed
 - [zulip/zulip#33276](https://github.com/zulip/zulip/issues/33276) Optimize topic cache calculation for rendering `near`/`with` links in automated notices after moving topics.
 - [zulip/zulip#29028](https://github.com/zulip/zulip/issues/29028) Show message edit button while saving changes
-- [zulip/zulip#28703](https://github.com/zulip/zulip/issues/28703) Emoji picker self-closing on touchscreen when search box lower than keyboard
 - [zulip/zulip#24044](https://github.com/zulip/zulip/issues/24044) Disallow spaces & special keywords in Code Playground language field
 - [zulip/zulip#19278](https://github.com/zulip/zulip/issues/19278) Make remote servers respect our rate limits on requests to the push bouncer
 - [zulip/zulip-terminal#1525](https://github.com/zulip/zulip-terminal/issues/1525) Add web app hotkeys for message formatting during compose

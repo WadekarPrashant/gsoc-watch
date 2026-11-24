@@ -158,7 +158,6 @@
   "zulip/python-zulip-api#417",
   "zulip/zulip#19278",
   "zulip/zulip#24044",
-  "zulip/zulip#28703",
   "zulip/zulip#29028",
   "zulip/zulip#33276",
   "zulip/zulip#34006",
@@ -172,5 +171,5 @@
   "zulip/zulip-terminal#898",
   "zulip/zulip-terminal#938"
  ],
- "updated": "2026-11-23T21:57:15.331580+00:00"
+ "updated": "2026-11-24T05:53:13.056129+00:00"
 }
