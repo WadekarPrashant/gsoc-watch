@@ -1,8 +1,8 @@
 # GSoC watcher
 
-Last run: 2026-11-24 05:53 UTC
+Last run: 2026-11-24 17:16 UTC
 
-## Currently free (33)
+## Currently free (32)
 
 - [matplotlib/matplotlib#32650](https://github.com/matplotlib/matplotlib/issues/32650) [Bug]: savefig to PNG raises 'failed to load glyph' for small text in macOS Helvetica (Regular) with matplotlib 3.11.0 and 3.11.2
 - [matplotlib/matplotlib#32641](https://github.com/matplotlib/matplotlib/issues/32641) [Bug]: agg.path.chunksize leaves gaps in lines at chunk boundaries
@@ -18,7 +18,6 @@ Last run: 2026-11-24 05:53 UTC
 - [oppia/oppia#23496](https://github.com/oppia/oppia/issues/23496) [Feature Request]: Enforce the strict type checks
 - [oppia/oppia#21970](https://github.com/oppia/oppia/issues/21970) Implement missing domain objects with full `validate()` function.
 - [oppia/oppia#21869](https://github.com/oppia/oppia/issues/21869) Implement validation job for prod models inheriting from base models
-- [oppia/oppia#18470](https://github.com/oppia/oppia/issues/18470) [Feature Request]: Improve the user experience for adding topics to the list of topics in the classroom admin page.
 - [oppia/oppia#12912](https://github.com/oppia/oppia/issues/12912) Fix pylint problems
 - [oppia/oppia#8015](https://github.com/oppia/oppia/issues/8015) Backend api service in frontend should return domain object instead of dict
 - [oppia/oppia#5670](https://github.com/oppia/oppia/issues/5670) Implement a reusable sort/filter list view for skills

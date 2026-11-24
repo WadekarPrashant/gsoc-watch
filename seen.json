@@ -149,7 +149,6 @@
   "numpy/numpy#21164",
   "numpy/numpy#21532",
   "oppia/oppia#12912",
-  "oppia/oppia#18470",
   "oppia/oppia#21869",
   "oppia/oppia#21970",
   "oppia/oppia#23496",
@@ -171,5 +170,5 @@
   "zulip/zulip-terminal#898",
   "zulip/zulip-terminal#938"
  ],
- "updated": "2026-11-24T05:53:13.056129+00:00"
+ "updated": "2026-11-24T17:16:41.960015+00:00"
 }
