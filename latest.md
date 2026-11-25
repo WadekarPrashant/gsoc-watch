@@ -1,9 +1,14 @@
 # GSoC watcher
 
-Last run: 2026-11-25 01:30 UTC
+Last run: 2026-11-25 11:00 UTC
 
-## Currently free (32)
+## New this run (1)
 
+- **[matplotlib/matplotlib#32662](https://github.com/matplotlib/matplotlib/issues/32662)** [MNT]: streamplot spends most of its time in MaskedArray scalar indexing inside interpgrid
+
+## Currently free (33)
+
+- [matplotlib/matplotlib#32662](https://github.com/matplotlib/matplotlib/issues/32662) [MNT]: streamplot spends most of its time in MaskedArray scalar indexing inside interpgrid
 - [matplotlib/matplotlib#32650](https://github.com/matplotlib/matplotlib/issues/32650) [Bug]: savefig to PNG raises 'failed to load glyph' for small text in macOS Helvetica (Regular) with matplotlib 3.11.0 and 3.11.2
 - [matplotlib/matplotlib#32641](https://github.com/matplotlib/matplotlib/issues/32641) [Bug]: agg.path.chunksize leaves gaps in lines at chunk boundaries
 - [matplotlib/matplotlib#32556](https://github.com/matplotlib/matplotlib/issues/32556) [Bug]: GLib io error if sigint is handled while some icon is loaded
