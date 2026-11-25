@@ -1,12 +1,12 @@
 # GSoC watcher
 
-Last run: 2026-11-25 11:00 UTC
+Last run: 2026-11-25 20:26 UTC
 
 ## New this run (1)
 
-- **[matplotlib/matplotlib#32662](https://github.com/matplotlib/matplotlib/issues/32662)** [MNT]: streamplot spends most of its time in MaskedArray scalar indexing inside interpgrid
+- **[zulip/zulip-terminal#311](https://github.com/zulip/zulip-terminal/issues/311)** Entering a narrow sometimes moves to earlier message than expected
 
-## Currently free (33)
+## Currently free (34)
 
 - [matplotlib/matplotlib#32662](https://github.com/matplotlib/matplotlib/issues/32662) [MNT]: streamplot spends most of its time in MaskedArray scalar indexing inside interpgrid
 - [matplotlib/matplotlib#32650](https://github.com/matplotlib/matplotlib/issues/32650) [Bug]: savefig to PNG raises 'failed to load glyph' for small text in macOS Helvetica (Regular) with matplotlib 3.11.0 and 3.11.2
@@ -41,3 +41,4 @@ Last run: 2026-11-25 11:00 UTC
 - [zulip/zulip-terminal#690](https://github.com/zulip/zulip-terminal/issues/690) Support receiving message ids to delete in bulk.
 - [zulip/zulip-terminal#496](https://github.com/zulip/zulip-terminal/issues/496) Refactor index to better support unread messages
 - [zulip/zulip-terminal#434](https://github.com/zulip/zulip-terminal/issues/434) Handle `read_message` events from server.
+- [zulip/zulip-terminal#311](https://github.com/zulip/zulip-terminal/issues/311) Entering a narrow sometimes moves to earlier message than expected

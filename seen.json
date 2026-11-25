@@ -119,6 +119,7 @@
   "zulip/zulip-terminal#171",
   "zulip/zulip-terminal#194",
   "zulip/zulip-terminal#209",
+  "zulip/zulip-terminal#311",
   "zulip/zulip-terminal#326",
   "zulip/zulip-terminal#333",
   "zulip/zulip-terminal#434",
@@ -165,6 +166,7 @@
   "zulip/zulip-terminal#1264",
   "zulip/zulip-terminal#1344",
   "zulip/zulip-terminal#1525",
+  "zulip/zulip-terminal#311",
   "zulip/zulip-terminal#434",
   "zulip/zulip-terminal#496",
   "zulip/zulip-terminal#690",
@@ -172,5 +174,5 @@
   "zulip/zulip-terminal#898",
   "zulip/zulip-terminal#938"
  ],
- "updated": "2026-11-25T11:00:10.599981+00:00"
+ "updated": "2026-11-25T20:26:41.402953+00:00"
 }
