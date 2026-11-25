@@ -56,6 +56,18 @@ ABANDON = re.compile(
     r"(abandon|unassigned from this issue|no longer (working|active)|"
     r"not working on (this|it)|dropping this|free to (take|claim))", re.I)
 
+# Experienced contributors often file a bug AND say in the report that they
+# intend to fix it themselves. Such an issue looks completely unclaimed --
+# no assignee, no PR, no claim comment -- but taking it means stepping on
+# the reporter. Matched against the issue body, and against comments by the
+# issue's own author.
+SELF_PR = re.compile(
+    r"((i|we)\s*(can|will|'ll|would be happy to|am happy to|intend to|plan to|"
+    r"would like to|plan on)\s*(open|submit|send|file|put up|raise|make|"
+    r"prepare|do)\s*(a|the|my)?\s*(pr|pull request|patch|fix)|"
+    r"\bpr incoming\b|\bpatch incoming\b|i have a (fix|patch|pr)\b|"
+    r"(i|we)\s*(can|will|'ll)\s*fix (this|it)\b)", re.I)
+
 
 def api(path, retries=2):
     req = urllib.request.Request(
@@ -74,13 +86,17 @@ def api(path, retries=2):
     return None
 
 
-def is_free(repo, num):
+def is_free(repo, num, body="", author=""):
     """Expensive check: no open linked PR, and no live claim.
 
     Returns True/False, or None if the API calls failed. None matters: a
     failed call must NOT be read as "free", and the issue must stay unseen
     so the next run re-checks it.
     """
+    # The reporter said in the report that they will fix it themselves.
+    if SELF_PR.search(body or ""):
+        return False
+
     timeline = api(f"/repos/{repo}/issues/{num}/timeline?per_page=100")
     if timeline is None:
         return None
@@ -95,10 +111,13 @@ def is_free(repo, num):
         return None
     last_claim = last_release = None
     for c in comments:
-        body = c.get("body") or ""
-        if ABANDON.search(body):
+        cbody = c.get("body") or ""
+        # The reporter following up to say they are taking it themselves.
+        if author and c["user"]["login"] == author and SELF_PR.search(cbody):
+            return False
+        if ABANDON.search(cbody):
             last_release = c["created_at"]
-        elif CLAIM.search(body):
+        elif CLAIM.search(cbody):
             last_claim = c["created_at"]
     if last_claim is None:
         return True
@@ -204,6 +223,8 @@ def main():
                 candidates[f"{repo}#{it['number']}"] = {
                     "repo": repo, "num": it["number"], "title": it["title"],
                     "url": it["html_url"], "created": it["created_at"][:10],
+                    "body": it.get("body") or "",
+                    "author": (it.get("user") or {}).get("login", ""),
                 }
 
     # Expensive pass: only on keys we have never evaluated.
@@ -215,7 +236,7 @@ def main():
     evaluated = set()
     for key in unseen:
         c = candidates[key]
-        verdict = is_free(c["repo"], c["num"])
+        verdict = is_free(c["repo"], c["num"], c.get("body", ""), c.get("author", ""))
         if verdict is None:
             continue          # leave unseen; re-check next run
         evaluated.add(key)
