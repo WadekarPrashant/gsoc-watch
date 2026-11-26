@@ -48,6 +48,7 @@
   "oppia/oppia#23496",
   "oppia/oppia#26736",
   "oppia/oppia#26818",
+  "oppia/oppia#26830",
   "oppia/oppia#26838",
   "oppia/oppia#5670",
   "oppia/oppia#8015",
@@ -174,5 +175,5 @@
   "zulip/zulip-terminal#898",
   "zulip/zulip-terminal#938"
  ],
- "updated": "2026-11-26T13:02:11.940287+00:00"
+ "updated": "2026-11-26T22:30:39.768929+00:00"
 }
