@@ -1,5 +1,7 @@
 {
  "seen": [
+  "AOSSIE-Org/BabyNest#315",
+  "AOSSIE-Org/BabyNest#316",
   "AOSSIE-Org/DebateAI#817",
   "AOSSIE-Org/DebateAI#820",
   "AOSSIE-Org/Ell-ena#365",
@@ -14,11 +16,16 @@
   "AOSSIE-Org/Gitcord-GithubDiscordBot#262",
   "AOSSIE-Org/Gitcord-GithubDiscordBot#264",
   "AOSSIE-Org/Gitcord-GithubDiscordBot#266",
+  "AOSSIE-Org/Gitcord-GithubDiscordBot#268",
   "AOSSIE-Org/OpenVerifiableLLM#389",
   "AOSSIE-Org/OpenVerifiableLLM#391",
   "AOSSIE-Org/OpenVerifiableLLM#392",
   "AOSSIE-Org/PictoPy#1786",
+  "AOSSIE-Org/PictoPy#1787",
+  "AOSSIE-Org/PictoPy#1788",
   "AOSSIE-Org/PullRequestDashboard#72",
+  "AOSSIE-Org/Resonate-Backend#195",
+  "AOSSIE-Org/Resonate-Backend#196",
   "OWASP/AI-Vulnerabilities-Playground#6",
   "OWASP/AI-Vulnerabilities-Playground#7",
   "OWASP/ASVS#3453",
@@ -44,6 +51,7 @@
   "godotengine/godot#125880",
   "godotengine/godot#125881",
   "godotengine/godot#125885",
+  "godotengine/godot#125889",
   "godotengine/godot-docs#12538",
   "learningequality/kolibri#16073",
   "learningequality/kolibri#16074",
@@ -70,9 +78,13 @@
   "sugarlabs/musicblocks-v4#1100"
  ],
  "free": [
-  "AOSSIE-Org/Ell-ena#365",
-  "AOSSIE-Org/Ell-ena#366"
+  "AOSSIE-Org/Gitcord-GithubDiscordBot#268",
+  "AOSSIE-Org/PictoPy#1787",
+  "AOSSIE-Org/PictoPy#1788",
+  "AOSSIE-Org/Resonate-Backend#195",
+  "AOSSIE-Org/Resonate-Backend#196",
+  "godotengine/godot#125889"
  ],
- "last_scan": "2026-11-27T18:01:12.086771+00:00",
- "updated": "2026-11-27T18:01:12.086771+00:00"
+ "last_scan": "2026-11-27T18:15:37.918338+00:00",
+ "updated": "2026-11-27T18:15:37.918338+00:00"
 }
