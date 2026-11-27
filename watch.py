@@ -87,6 +87,18 @@ NOISE_LABEL = re.compile(
     r"anneal|autotest|automated|dependencies|renovate|dependabot", re.I)
 # Some projects explicitly do not want AI-assisted contributions.
 AI_BANNED = re.compile(r"not for ai|no.?ai\b|ai.?free", re.I)
+# Learning Equality stamps a banner into the issue body itself, and a bot
+# turns away anyone who asks anyway. The issue is open, unassigned, labelled
+# "good first issue" -- and still not yours to take. Other projects word it
+# the same way, so this is worth reading everywhere, not just for them.
+NOT_OPEN = re.compile(
+    r"not open (for|to) contribution|do not (work on|claim) this|"
+    r"internal (use|only)|maintainers only|not accepting (prs|pull requests|"
+    r"contributions)", re.I)
+# Labels that mean somebody already holds it, whatever the assignee field says.
+CLAIM_LABEL = re.compile(
+    r"community-contribution-in-progress|contribution-in-progress|"
+    r"in.?progress|being.?worked|claimed|assigned", re.I)
 # Whole repos that never contain a codeable task: proposal trackers, RFC
 # queues, idea lists. A FOCUS org would otherwise flood us with these --
 # godot-proposals alone files several feature wishes a day.
@@ -189,7 +201,8 @@ def is_free(repo, num, body="", author=""):
     """Returns True/False, or None if the API calls failed. None matters: a
     failed call must NOT be read as "free", and the issue must stay unseen
     so the next run re-checks it."""
-    if SELF_PR.search(body or "") or BODY_CLAIM.search(body or ""):
+    if (SELF_PR.search(body or "") or BODY_CLAIM.search(body or "")
+            or NOT_OPEN.search(body or "")):
         return False
 
     timeline = api(f"/repos/{repo}/issues/{num}/timeline?per_page=100",
@@ -282,7 +295,7 @@ def interesting(labels, owner):
     joined = " ".join(labels)
     if AI_BANNED.search(joined):
         return False, False
-    if NOISE_LABEL.search(joined):
+    if NOISE_LABEL.search(joined) or CLAIM_LABEL.search(joined):
         return False, False
     beg = bool(BEGINNER.search(joined))
     return (beg or owner in FOCUS), beg
