@@ -119,6 +119,20 @@ SELF_PR = re.compile(
     r"\bpr incoming\b|\bpatch incoming\b|i have a (fix|patch|pr)\b|"
     r"(i|we)\s*(can|will|'ll)\s*fix (this|it)\b)", re.I)
 
+# A reporter who files a careful bug report very often ends it with "I'd like
+# to work on this". That is a claim, but it lives in the BODY, where only
+# SELF_PR used to look -- and SELF_PR wants the words "pull request". So the
+# issue read as unclaimed and went out as an alert. Needs first person: a
+# maintainer writing "if you'd like to work on this, comment below" is an
+# invitation, the exact opposite, and must not match.
+BODY_CLAIM = re.compile(
+    r"\b(i|we)\b[^.!?\n]{0,48}?\b(would like to|'d like to|will|'ll|plan to|"
+    r"intend to|am going to|going to|want to|can)\b[^.!?\n]{0,40}?"
+    r"\b(work(ing)? on (this|it)|take (this|it)|tackle (this|it)|"
+    r"attempt (this|it)|pick (this|it) up|open(ing)? (a|the) (pr|pull request)|"
+    r"submit(ting)? (a|the) (pr|pull request)|rais(e|ing) (a|the) (pr|pull request)|"
+    r"fix (this|it))\b", re.I)
+
 
 def api(path, retries=2, paginate=False):
     """GET a GitHub API path, returning None if it ultimately fails.
@@ -175,7 +189,7 @@ def is_free(repo, num, body="", author=""):
     """Returns True/False, or None if the API calls failed. None matters: a
     failed call must NOT be read as "free", and the issue must stay unseen
     so the next run re-checks it."""
-    if SELF_PR.search(body or ""):
+    if SELF_PR.search(body or "") or BODY_CLAIM.search(body or ""):
         return False
 
     timeline = api(f"/repos/{repo}/issues/{num}/timeline?per_page=100",
