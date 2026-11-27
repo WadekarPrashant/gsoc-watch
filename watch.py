@@ -123,7 +123,8 @@ NOISE_REPO = re.compile(
 
 CLAIM = re.compile(
     r"(@\w*bot\s+claim|\bclaim(ing|ed)?\b|\bi.{0,3}ll take\b|working on (this|it)|"
-    r"assign (this )?to me|like to work on|can i work|i am working|i.{0,3}m working|"
+    r"assign (this |it |that |the )?(issue|ticket|task|one|bug)? ?to me|"
+    r"like to work on|can i work|i am working|i.{0,3}m working|"
     r"pick(ing)? (this|it|that)? ?up|started work|"
     # People rarely say "I claim this". They say it a dozen other ways, and
     # every miss here reads as an unclaimed issue -- the costliest error we
