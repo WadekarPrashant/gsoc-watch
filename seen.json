@@ -11,6 +11,7 @@
   "AOSSIE-Org/Gitcord-GithubDiscordBot#262",
   "AOSSIE-Org/Gitcord-GithubDiscordBot#264",
   "AOSSIE-Org/OpenVerifiableLLM#389",
+  "AOSSIE-Org/PullRequestDashboard#72",
   "OWASP/AI-Vulnerabilities-Playground#6",
   "OWASP/AI-Vulnerabilities-Playground#7",
   "OWASP/ASVS#3453",
@@ -28,7 +29,9 @@
   "oppia/oppia#28308",
   "oppia/oppia#28309"
  ],
- "free": [],
- "last_scan": "2026-11-27T12:01:14.277124+00:00",
- "updated": "2026-11-27T12:01:14.277124+00:00"
+ "free": [
+  "AOSSIE-Org/PullRequestDashboard#72"
+ ],
+ "last_scan": "2026-11-27T12:15:40.735611+00:00",
+ "updated": "2026-11-27T12:15:40.735611+00:00"
 }
