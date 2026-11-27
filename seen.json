@@ -32,9 +32,7 @@
   "oppia/oppia#28308",
   "oppia/oppia#28309"
  ],
- "free": [
-  "openfoodfacts/openfoodfacts-server#15595"
- ],
- "last_scan": "2026-11-27T12:45:47.298096+00:00",
- "updated": "2026-11-27T12:45:47.298096+00:00"
+ "free": [],
+ "last_scan": "2026-11-27T13:01:14.648368+00:00",
+ "updated": "2026-11-27T13:01:14.648368+00:00"
 }
