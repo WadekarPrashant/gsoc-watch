@@ -11,6 +11,8 @@
   "AOSSIE-Org/Gitcord-GithubDiscordBot#262",
   "AOSSIE-Org/Gitcord-GithubDiscordBot#264",
   "AOSSIE-Org/OpenVerifiableLLM#389",
+  "AOSSIE-Org/OpenVerifiableLLM#391",
+  "AOSSIE-Org/OpenVerifiableLLM#392",
   "AOSSIE-Org/PullRequestDashboard#72",
   "OWASP/AI-Vulnerabilities-Playground#6",
   "OWASP/AI-Vulnerabilities-Playground#7",
@@ -23,6 +25,7 @@
   "OWASP/mastg#4047",
   "RocketChat/EmbeddedChat#1465",
   "RocketChat/EmbeddedChat#1466",
+  "apache/stormcrawler#2353",
   "godotengine/godot#125868",
   "godotengine/godot#125872",
   "godotengine/godot#125875",
@@ -30,6 +33,7 @@
   "godotengine/godot#125879",
   "godotengine/godot#125880",
   "godotengine/godot#125881",
+  "godotengine/godot-docs#12538",
   "learningequality/kolibri#16073",
   "learningequality/kolibri#16074",
   "learningequality/kolibri#16075",
@@ -52,7 +56,11 @@
   "sugarlabs/musicblocks-v4#1099",
   "sugarlabs/musicblocks-v4#1100"
  ],
- "free": [],
- "last_scan": "2026-11-27T15:30:58.652207+00:00",
- "updated": "2026-11-27T15:30:58.652207+00:00"
+ "free": [
+  "AOSSIE-Org/OpenVerifiableLLM#391",
+  "AOSSIE-Org/OpenVerifiableLLM#392",
+  "godotengine/godot-docs#12538"
+ ],
+ "last_scan": "2026-11-27T15:45:38.409407+00:00",
+ "updated": "2026-11-27T15:45:38.409407+00:00"
 }
