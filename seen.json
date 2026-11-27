@@ -52,12 +52,7 @@
   "sugarlabs/musicblocks-v4#1099",
   "sugarlabs/musicblocks-v4#1100"
  ],
- "free": [
-  "godotengine/godot#125879",
-  "godotengine/godot#125880",
-  "godotengine/godot#125881",
-  "openfoodfacts/smooth-app#8060"
- ],
- "last_scan": "2026-11-27T15:15:39.910132+00:00",
- "updated": "2026-11-27T15:15:39.910132+00:00"
+ "free": [],
+ "last_scan": "2026-11-27T15:30:58.652207+00:00",
+ "updated": "2026-11-27T15:30:58.652207+00:00"
 }
