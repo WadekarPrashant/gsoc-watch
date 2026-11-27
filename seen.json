@@ -22,16 +22,18 @@
   "RocketChat/EmbeddedChat#1465",
   "RocketChat/EmbeddedChat#1466",
   "godotengine/godot#125868",
+  "godotengine/godot#125872",
   "learningequality/kolibri#16073",
   "learningequality/kolibri#16074",
+  "learningequality/kolibri#16075",
   "openfoodfacts/openfoodfacts-explorer#2282",
   "openfoodfacts/openfoodfacts-web#1129",
   "oppia/oppia#28308",
   "oppia/oppia#28309"
  ],
  "free": [
-  "AOSSIE-Org/PullRequestDashboard#72"
+  "godotengine/godot#125872"
  ],
- "last_scan": "2026-11-27T12:15:40.735611+00:00",
- "updated": "2026-11-27T12:15:40.735611+00:00"
+ "last_scan": "2026-11-27T12:30:59.597813+00:00",
+ "updated": "2026-11-27T12:30:59.597813+00:00"
 }
