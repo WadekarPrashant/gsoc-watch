@@ -29,6 +29,7 @@
   "OWASP/mastg#4047",
   "RocketChat/EmbeddedChat#1465",
   "RocketChat/EmbeddedChat#1466",
+  "RocketChat/Rocket.Chat#43995",
   "apache/stormcrawler#2353",
   "godotengine/godot#125868",
   "godotengine/godot#125872",
@@ -61,7 +62,9 @@
   "sugarlabs/musicblocks-v4#1099",
   "sugarlabs/musicblocks-v4#1100"
  ],
- "free": [],
- "last_scan": "2026-11-27T16:45:37.694137+00:00",
- "updated": "2026-11-27T16:45:37.694137+00:00"
+ "free": [
+  "RocketChat/Rocket.Chat#43995"
+ ],
+ "last_scan": "2026-11-27T17:01:15.789843+00:00",
+ "updated": "2026-11-27T17:01:15.789843+00:00"
 }
