@@ -95,6 +95,20 @@ NOT_OPEN = re.compile(
     r"not open (for|to) contribution|do not (work on|claim) this|"
     r"internal (use|only)|maintainers only|not accepting (prs|pull requests|"
     r"contributions)", re.I)
+# English drops the subject when offering to do something: "Happy to open a
+# draft PR", "Can take this on", "Will send a patch shortly". SELF_PR and
+# BODY_CLAIM both insist on an explicit I/we, so every one of those reads as
+# unclaimed. The offer is anchored to a sentence start, because mid-sentence
+# the same words usually belong to someone else -- "ping me if you are happy
+# to open a PR" is an invitation.
+ELIDED_CLAIM = re.compile(
+    r"(?:^|[.!?\n]\s*|^\s*[-*]\s*)"
+    r"(?:happy|glad|willing|keen|planning|intending)\s+to\s+"
+    r"(?:open|submit|send|file|raise|put up|prepare|draft|do|take|work on)\b"
+    r"|(?:^|[.!?\n]\s*)(?:will|can)\s+(?:open|submit|send|file|raise|put up|"
+    r"prepare)\s+(?:a|the|my)?\s*(?:draft\s+)?(?:pr|pull request|patch|fix)\b",
+    re.I | re.M)
+
 # Labels that mean somebody already holds it, whatever the assignee field says.
 CLAIM_LABEL = re.compile(
     r"community-contribution-in-progress|contribution-in-progress|"
@@ -202,7 +216,7 @@ def is_free(repo, num, body="", author=""):
     failed call must NOT be read as "free", and the issue must stay unseen
     so the next run re-checks it."""
     if (SELF_PR.search(body or "") or BODY_CLAIM.search(body or "")
-            or NOT_OPEN.search(body or "")):
+            or ELIDED_CLAIM.search(body or "") or NOT_OPEN.search(body or "")):
         return False
 
     timeline = api(f"/repos/{repo}/issues/{num}/timeline?per_page=100",
