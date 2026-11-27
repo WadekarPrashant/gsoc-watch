@@ -17,11 +17,14 @@
   "OWASP/mastg#4047",
   "RocketChat/EmbeddedChat#1465",
   "RocketChat/EmbeddedChat#1466",
-  "godotengine/godot#125868"
+  "godotengine/godot#125868",
+  "openfoodfacts/openfoodfacts-explorer#2282",
+  "oppia/oppia#28308"
  ],
  "free": [
-  "AOSSIE-Org/Gitcord-GithubDiscordBot#262"
+  "openfoodfacts/openfoodfacts-explorer#2282",
+  "oppia/oppia#28308"
  ],
- "last_scan": "2026-11-27T09:30:58.281715+00:00",
- "updated": "2026-11-27T09:30:58.281715+00:00"
+ "last_scan": "2026-11-27T09:45:38.113204+00:00",
+ "updated": "2026-11-27T09:45:38.113204+00:00"
 }
