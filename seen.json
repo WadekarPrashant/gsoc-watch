@@ -36,6 +36,7 @@
   "OWASP/Nest#5909",
   "OWASP/Nest#5911",
   "OWASP/Nest#5912",
+  "OWASP/Nettacker#1945",
   "OWASP/OpenCRE#1254",
   "OWASP/OpenCRE#1255",
   "OWASP/cve-lite-cli#1846",
@@ -108,32 +109,13 @@
   "sugarlabs/musicblocks-v4#1097",
   "sugarlabs/musicblocks-v4#1098",
   "sugarlabs/musicblocks-v4#1099",
-  "sugarlabs/musicblocks-v4#1100"
+  "sugarlabs/musicblocks-v4#1100",
+  "zulip/zulip-terminal#1694"
  ],
  "free": [
-  "apache/maven-archetype#1086",
-  "apache/maven-assembly-plugin#1425",
-  "apache/maven-changelog-plugin#269",
-  "apache/maven-changes-plugin#701",
-  "apache/maven-checkstyle-plugin#758",
-  "apache/maven-dependency-plugin#1820",
-  "apache/maven-dependency-tree#169",
-  "apache/maven-ejb-plugin#261",
-  "apache/maven-enforcer#1096",
-  "apache/maven-javadoc-plugin#1459",
-  "apache/maven-mvnd#1967",
-  "apache/maven-plugin-testing#312",
-  "apache/maven-plugin-tools#1295",
-  "apache/maven-pmd-plugin#793",
-  "apache/maven-project-info-reports-plugin#704",
-  "apache/maven-release#1547",
-  "apache/maven-remote-resources-plugin#357",
-  "apache/maven-reporting-exec#191",
-  "apache/maven-resolver-ant-tasks#219",
-  "apache/maven-site-plugin#1366",
-  "apache/maven-surefire#3644",
-  "apache/maven-war-plugin#694"
+  "OWASP/Nettacker#1945",
+  "zulip/zulip-terminal#1694"
  ],
- "last_scan": "2026-11-27T19:45:38.016524+00:00",
- "updated": "2026-11-27T19:45:38.016524+00:00"
+ "last_scan": "2026-11-27T20:01:08.982067+00:00",
+ "updated": "2026-11-27T20:01:08.982067+00:00"
 }
