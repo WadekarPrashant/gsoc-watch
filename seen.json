@@ -27,6 +27,7 @@
   "OWASP/OpenCRE#1255",
   "OWASP/cve-lite-cli#1846",
   "OWASP/cve-lite-cli#1847",
+  "OWASP/cve-lite-cli#1856",
   "OWASP/mastg#4047",
   "RocketChat/EmbeddedChat#1465",
   "RocketChat/EmbeddedChat#1466",
@@ -66,8 +67,8 @@
   "sugarlabs/musicblocks-v4#1100"
  ],
  "free": [
-  "oppia/oppia#28311"
+  "OWASP/cve-lite-cli#1856"
  ],
- "last_scan": "2026-11-27T17:15:45.902095+00:00",
- "updated": "2026-11-27T17:15:45.902095+00:00"
+ "last_scan": "2026-11-27T17:30:57.663043+00:00",
+ "updated": "2026-11-27T17:30:57.663043+00:00"
 }
