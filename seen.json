@@ -1,6 +1,25 @@
 {
- "seen": [],
- "free": [],
- "last_scan": "2026-11-27T04:20:09.789943+00:00",
- "updated": "2026-11-27T08:18:37.101845+00:00"
+ "seen": [
+  "AOSSIE-Org/DebateAI#817",
+  "AOSSIE-Org/Gitcord-GithubDiscordBot#248",
+  "AOSSIE-Org/Gitcord-GithubDiscordBot#249",
+  "AOSSIE-Org/Gitcord-GithubDiscordBot#251",
+  "AOSSIE-Org/Gitcord-GithubDiscordBot#252",
+  "AOSSIE-Org/Gitcord-GithubDiscordBot#253",
+  "AOSSIE-Org/OpenVerifiableLLM#389",
+  "OWASP/AI-Vulnerabilities-Playground#6",
+  "OWASP/AI-Vulnerabilities-Playground#7",
+  "OWASP/ASVS#3453",
+  "OWASP/mastg#4047",
+  "godotengine/godot#125868"
+ ],
+ "free": [
+  "AOSSIE-Org/DebateAI#817",
+  "AOSSIE-Org/OpenVerifiableLLM#389",
+  "OWASP/ASVS#3453",
+  "OWASP/mastg#4047",
+  "godotengine/godot#125868"
+ ],
+ "last_scan": "2026-11-27T08:20:22.082838+00:00",
+ "updated": "2026-11-27T08:20:22.082838+00:00"
 }
