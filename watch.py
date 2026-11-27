@@ -1,19 +1,30 @@
 # -*- coding: utf-8 -*-
 """GSoC issue watcher - cloud edition (runs on GitHub Actions).
 
-Finds newcomer-friendly issues that are genuinely free to claim and pushes a
-phone notification via ntfy.sh when a new one appears.
+Watches every GSoC organisation's GitHub for issues that are genuinely free
+to claim, and pushes a phone notification when one appears.
 
-Efficiency note: listing issues is cheap, but the "is it really free?" checks
-(timeline + comments, 2 calls each) are not. So we only deep-check issue
-numbers we have never seen before. A typical run costs ~25 API calls instead
-of several hundred, which keeps us well inside the Actions token's hourly
-limit.
+Scope: orgs.json holds ~300 GitHub owners derived from the GSoC program API
+for 2020-2026. Searching them one at a time would cost 300 requests a run,
+so owners are batched 20 to a query -- GitHub ORs repeated `org:` qualifiers,
+which brings a full sweep down to ~16 searches.
+
+Volume is the real design constraint. Those orgs open ~900 issues a day, and
+notifying on all of them is the same as notifying on none. So an issue has to
+clear three gates before it can reach your phone:
+
+  1. not machine-generated (error trackers, fuzzers and CI bots file a lot)
+  2. either beginner-labelled anywhere, or any issue in a FOCUS org
+  3. genuinely free -- no open linked PR, no live claim
+
+Only issues that clear gate 2 are vetted, which keeps us well inside the
+1,000 requests/hour that GITHUB_TOKEN gets inside Actions.
 
 Env vars:
-  GITHUB_TOKEN  required - provided automatically by Actions
-  NTFY_TOPIC    required - your private ntfy topic name
-  NTFY_SERVER   optional - defaults to https://ntfy.sh
+  GITHUB_TOKEN      required - provided automatically by Actions
+  TELEGRAM_TOKEN    Telegram bot token (preferred channel)
+  TELEGRAM_CHAT_ID  your chat id
+  NTFY_TOPIC        optional ntfy fallback
 """
 import json
 import os
@@ -22,45 +33,85 @@ import sys
 import time
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+
+# Issue titles carry emoji. On a Windows console that is cp1252 and a bare
+# print() raises UnicodeEncodeError -- which, before notify() is reached,
+# silently costs you the alert.
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:  # noqa: BLE001
+    pass
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 STATE = os.path.join(HERE, "seen.json")
 LATEST = os.path.join(HERE, "latest.md")
+ORGS = os.path.join(HERE, "orgs.json")
 
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
-# Telegram is used when a bot token is present; ntfy is the fallback.
 TG_TOKEN = os.environ.get("TELEGRAM_TOKEN", "")
 TG_CHAT = os.environ.get("TELEGRAM_CHAT_ID", "")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
 NTFY_SERVER = os.environ.get("NTFY_SERVER", "https://ntfy.sh").rstrip("/")
 
-REPOS = [
-    ("zulip/zulip", ["help wanted"]),
-    ("zulip/python-zulip-api", ["help wanted", "good first issue"]),
-    ("zulip/zulip-terminal", ["help wanted", "good first issue"]),
-    ("RocketChat/Rocket.Chat", ["good first issue", "help wanted"]),
-    ("oppia/oppia", ["good first issue", "starter issue"]),
-    ("OWASP/Nest", ["good first issue", "help wanted"]),
-    ("numpy/numpy", ["sprintable"]),
-    ("matplotlib/matplotlib", ["first-contribution", "Difficulty: Easy"]),
-    ("pandas-dev/pandas", ["good first issue"]),
-    ("scikit-learn/scikit-learn", ["good first issue", "Easy"]),
-]
+# Orgs where ANY real issue is worth hearing about, not just beginner-labelled
+# ones. Keep this list short -- every name here adds to the daily volume.
+FOCUS = {
+    "zulip", "matplotlib", "learningequality", "godotengine", "oppia",
+    "RocketChat", "numpy", "scikit-learn", "pandas-dev", "OWASP",
+    "openfoodfacts", "AOSSIE-Org", "CCExtractor", "python-gsoc",
+}
+
+# How many issues a single Telegram message will list before summarising.
+MAX_PUSH = 12
+# Never look further back than this, however long the watcher was down.
+MAX_LOOKBACK_H = 72
+BATCH = 20
+
+BEGINNER = re.compile(
+    r"good.?first|beginner|newcomer|starter|first.?timer|first.?contribution|"
+    r"easy|low.hanging|sprintable|help.?wanted|up.?for.?grabs|"
+    r"difficulty.?:?\s*(easy|low)|e-easy|d-easy", re.I)
+
+# Error trackers, fuzzers and CI bots file issues around the clock. They are
+# open and unassigned, so every "is it free?" test says yes -- but none of
+# them is a contribution opportunity.
+NOISE_TITLE = re.compile(
+    r"^(ActionView|ActiveRecord|ActiveSupport|ActionController|PG::|Mysql2::|"
+    r"NoMethodError|TypeError|NameError|ArgumentError|Errno|SystemStackError|"
+    r"ZeroDivisionError|KeyError|Redis::|Net::|OpenSSL::|"
+    r"\[fuzz|FAIL:|CI failure|Nightly|\[CI\]|Flaky test|Build failure)|"
+    r"^\W*(\U0001F6D1|✅|\U0001F7E7).*\b(is down|is back up|degraded)\b", re.I)
+NOISE_LABEL = re.compile(
+    r"code-scan|generated by fuzzer|devel-(vm|host)|admin-issue|maintainer-issue|"
+    r"anneal|autotest|automated|dependencies|renovate|dependabot", re.I)
+# Some projects explicitly do not want AI-assisted contributions.
+AI_BANNED = re.compile(r"not for ai|no.?ai\b|ai.?free", re.I)
+# Whole repos that never contain a codeable task: proposal trackers, RFC
+# queues, idea lists. A FOCUS org would otherwise flood us with these --
+# godot-proposals alone files several feature wishes a day.
+NOISE_REPO = re.compile(
+    r"[-_.](proposals?|rfcs?|roadmap|ideas|meta|website|homepage|blog|"
+    r"handbook|wiki|upptime|uptime|status|monitoring)$|^\.github$|"
+    r"^(gsoc|ideas|proposals)$", re.I)
 
 CLAIM = re.compile(
     r"(@\w*bot\s+claim|\bclaim(ing|ed)?\b|\bi.{0,3}ll take\b|working on (this|it)|"
     r"assign (this )?to me|like to work on|can i work|i am working|i.{0,3}m working|"
-    r"picking (this )?up|started work)", re.I)
+    r"pick(ing)? (this|it|that)? ?up|started work|"
+    # People rarely say "I claim this". They say it a dozen other ways, and
+    # every miss here reads as an unclaimed issue -- the costliest error we
+    # make, because it sends someone to duplicate live work.
+    r"take a stab|have a go\b|give (this|it) a (try|go|shot)|"
+    r"(i|we).{0,3}d like to (take|try|tackle|attempt|have)|"
+    r"interested in (working|taking|contributing to this)|"
+    r"may i (work|take|try)|let me (take|try|handle)|"
+    r"i.{0,3}ll (work on|have a|give|start)|"
+    r"(taking|tackling|attempting) (this|it)\b|"
+    r"assign(ed)? it to me|work on this issue)", re.I)
 ABANDON = re.compile(
     r"(abandon|unassigned from this issue|no longer (working|active)|"
     r"not working on (this|it)|dropping this|free to (take|claim))", re.I)
-
-# Experienced contributors often file a bug AND say in the report that they
-# intend to fix it themselves. Such an issue looks completely unclaimed --
-# no assignee, no PR, no claim comment -- but taking it means stepping on
-# the reporter. Matched against the issue body, and against comments by the
-# issue's own author.
 SELF_PR = re.compile(
     r"((i|we)\s*(can|will|'ll|would be happy to|am happy to|intend to|plan to|"
     r"would like to|plan on)\s*(open|submit|send|file|put up|raise|make|"
@@ -69,35 +120,66 @@ SELF_PR = re.compile(
     r"(i|we)\s*(can|will|'ll)\s*fix (this|it)\b)", re.I)
 
 
-def api(path, retries=2):
-    req = urllib.request.Request(
-        "https://api.github.com" + path,
-        headers={"Authorization": f"Bearer {TOKEN}",
-                 "Accept": "application/vnd.github+json",
-                 "User-Agent": "gsoc-watch"})
-    for attempt in range(retries + 1):
-        try:
-            return json.load(urllib.request.urlopen(req, timeout=60))
-        except Exception as exc:  # noqa: BLE001
-            if attempt == retries:
-                print(f"  ! {exc} ({path[:70]})", flush=True)
-                return None
-            time.sleep(2 * (attempt + 1))
-    return None
+def api(path, retries=2, paginate=False):
+    """GET a GitHub API path, returning None if it ultimately fails.
+
+    paginate=True follows the Link rel="next" header and concatenates every
+    page. That matters more than it looks: an issue's timeline includes every
+    label change and reference it has ever collected, so on a long-lived issue
+    the open PR that proves it is taken can easily sit past the first 100
+    events. Reading only page 1 reports such an issue as free.
+    """
+    url = "https://api.github.com" + path
+    out = []
+    while url:
+        page = link = None
+        for attempt in range(retries + 1):
+            try:
+                resp = urllib.request.urlopen(urllib.request.Request(
+                    url, headers={"Authorization": f"Bearer {TOKEN}",
+                                  "Accept": "application/vnd.github+json",
+                                  "User-Agent": "gsoc-watch"}), timeout=60)
+                page = json.load(resp)
+                link = resp.headers.get("Link", "")
+                break
+            except Exception as exc:  # noqa: BLE001
+                if attempt == retries:
+                    print(f"  ! {exc} ({path[:70]})", flush=True)
+                    return None
+                time.sleep(3 * (attempt + 1))
+        if not paginate or not isinstance(page, list):
+            return page
+        out.extend(page)
+        nxt = re.search(r'<([^>]+)>;\s*rel="next"', link or "")
+        url = nxt.group(1) if nxt else None
+    return out
+
+
+def search(query, pages=3):
+    """Run a search, following pages. Search is rate limited separately
+    (30/min), so this sleeps between calls rather than risking a 403."""
+    items = []
+    for page in range(1, pages + 1):
+        r = api("/search/issues?per_page=100&page=%d&q=%s"
+                % (page, urllib.parse.quote(query)))
+        time.sleep(2.2)
+        if not r:
+            break
+        items.extend(r.get("items", []))
+        if len(r.get("items", [])) < 100:
+            break
+    return items
 
 
 def is_free(repo, num, body="", author=""):
-    """Expensive check: no open linked PR, and no live claim.
-
-    Returns True/False, or None if the API calls failed. None matters: a
+    """Returns True/False, or None if the API calls failed. None matters: a
     failed call must NOT be read as "free", and the issue must stay unseen
-    so the next run re-checks it.
-    """
-    # The reporter said in the report that they will fix it themselves.
+    so the next run re-checks it."""
     if SELF_PR.search(body or ""):
         return False
 
-    timeline = api(f"/repos/{repo}/issues/{num}/timeline?per_page=100")
+    timeline = api(f"/repos/{repo}/issues/{num}/timeline?per_page=100",
+                   paginate=True)
     if timeline is None:
         return None
     for ev in timeline:
@@ -106,13 +188,13 @@ def is_free(repo, num, body="", author=""):
             if src.get("pull_request") and src.get("state") == "open":
                 return False
 
-    comments = api(f"/repos/{repo}/issues/{num}/comments?per_page=100")
+    comments = api(f"/repos/{repo}/issues/{num}/comments?per_page=100",
+                   paginate=True)
     if comments is None:
         return None
     last_claim = last_release = None
     for c in comments:
         cbody = c.get("body") or ""
-        # The reporter following up to say they are taking it themselves.
         if author and c["user"]["login"] == author and SELF_PR.search(cbody):
             return False
         if ABANDON.search(cbody):
@@ -123,61 +205,57 @@ def is_free(repo, num, body="", author=""):
         return True
     if last_release and last_release > last_claim:
         return True
+    # Two weeks with no PR is the threshold Zulip's own docs use for calling
+    # an assigned issue abandoned; it is a fair rule of thumb elsewhere too.
     age = (datetime.now(timezone.utc)
            - datetime.fromisoformat(last_claim.replace("Z", "+00:00"))).days
-    return age > 45
+    return age > 14
 
 
-def send_telegram(new):
-    lines = ["*New GSoC issue%s free to claim*" % ("s" if len(new) > 1 else ""), ""]
-    for i in new[:10]:
-        title = (i["title"].replace("[", "(").replace("]", ")")
-                 .replace("*", "").replace("_", "").replace("`", ""))
-        lines.append(f"[{i['repo']}#{i['num']}]({i['url']})")
-        lines.append(f"{title}")
+def send_telegram(new, extra=0):
+    lines = ["*%d GSoC issue%s free to claim*" % (len(new), "s" if len(new) > 1 else ""), ""]
+    for i in new:
+        title = re.sub(r"[\[\]*_`]", "", i["title"])[:90]
+        tag = " _(beginner)_" if i.get("beginner") else ""
+        lines.append(f"[{i['repo']}#{i['num']}]({i['url']}){tag}")
+        lines.append(title)
         lines.append("")
-    if len(new) > 10:
-        lines.append(f"...and {len(new) - 10} more")
-    payload = json.dumps({
-        "chat_id": TG_CHAT,
-        "text": "\n".join(lines),
-        "parse_mode": "Markdown",
-        "disable_web_page_preview": True,
-    }).encode("utf-8")
-    req = urllib.request.Request(
+    if extra:
+        lines.append(f"_...and {extra} more in latest.md_")
+    payload = json.dumps({"chat_id": TG_CHAT, "text": "\n".join(lines),
+                          "parse_mode": "Markdown",
+                          "disable_web_page_preview": True}).encode("utf-8")
+    urllib.request.urlopen(urllib.request.Request(
         f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage",
-        data=payload, headers={"Content-Type": "application/json"})
-    urllib.request.urlopen(req, timeout=30)
+        data=payload, headers={"Content-Type": "application/json"}), timeout=30)
 
 
-def send_ntfy(new):
+def send_ntfy(new, extra=0):
     if len(new) == 1:
         i = new[0]
         title, body, click = f"Free issue: {i['repo']}", f"#{i['num']} {i['title']}", i["url"]
     else:
-        title = f"{len(new)} free GSoC issues"
+        title = f"{len(new) + extra} free GSoC issues"
         body = "\n".join(f"{i['repo']}#{i['num']} {i['title'][:70]}" for i in new[:5])
         click = new[0]["url"]
-    req = urllib.request.Request(
+    urllib.request.urlopen(urllib.request.Request(
         f"{NTFY_SERVER}/{NTFY_TOPIC}", data=body.encode("utf-8"),
         headers={"Title": title.encode("ascii", "replace").decode(),
-                 "Priority": "high", "Tags": "rocket", "Click": click})
-    urllib.request.urlopen(req, timeout=30)
+                 "Priority": "high", "Tags": "rocket", "Click": click}), timeout=30)
 
 
-def notify(new):
+def notify(new, extra=0):
     sent = False
     if TG_TOKEN and TG_CHAT:
         try:
-            send_telegram(new)
-            print(f"telegram: pushed {len(new)} issue(s)", flush=True)
+            send_telegram(new, extra)
+            print(f"telegram: pushed {len(new)} (+{extra} summarised)", flush=True)
             sent = True
         except Exception as exc:  # noqa: BLE001
             print(f"  ! telegram failed: {exc}", flush=True)
     if NTFY_TOPIC:
         try:
-            send_ntfy(new)
-            print(f"ntfy: pushed {len(new)} issue(s)", flush=True)
+            send_ntfy(new, extra)
             sent = True
         except Exception as exc:  # noqa: BLE001
             print(f"  ! ntfy failed: {exc}", flush=True)
@@ -185,95 +263,118 @@ def notify(new):
         print("WARNING: no notification channel configured or all failed", flush=True)
 
 
+def interesting(labels, owner):
+    """Gate 2. Returns (keep, is_beginner)."""
+    joined = " ".join(labels)
+    if AI_BANNED.search(joined):
+        return False, False
+    if NOISE_LABEL.search(joined):
+        return False, False
+    beg = bool(BEGINNER.search(joined))
+    return (beg or owner in FOCUS), beg
+
+
 def main():
     if not TOKEN:
         print("ERROR: GITHUB_TOKEN not set")
         return 1
 
-    # --test exercises the notification path itself. Worth having: an ordinary
-    # run only calls notify() when something new turns up, so a misnamed secret
-    # would otherwise stay hidden until the first real alert failed silently.
     if "--test" in sys.argv:
         print("Sending a test notification...", flush=True)
-        notify([{
-            "repo": "zulip/zulip-terminal", "num": 687,
-            "title": "TEST - notification path is working",
-            "url": "https://github.com/zulip/zulip-terminal/issues/687",
-        }])
+        notify([{"repo": "zulip/zulip-terminal", "num": 687, "beginner": True,
+                 "title": "TEST - notification path is working",
+                 "url": "https://github.com/zulip/zulip-terminal/issues/687"}])
         return 0
 
-    state = {"seen": [], "free": []}
+    owners = json.load(open(ORGS, encoding="utf-8"))["owners"]
+    state = {"seen": [], "free": [], "last_scan": None}
     if os.path.exists(STATE):
         try:
             state = json.load(open(STATE, encoding="utf-8"))
         except (OSError, ValueError):
             pass
     seen = set(state.get("seen", []))
-    first_run = not seen
 
-    # Cheap pass: list candidate issues.
-    candidates = {}
-    for repo, labels in REPOS:
-        for label in labels:
-            for it in api(f"/repos/{repo}/issues?state=open&assignee=none"
-                          f"&labels={urllib.parse.quote(label)}"
-                          "&sort=created&direction=desc&per_page=40") or []:
-                if "pull_request" in it:
-                    continue
-                candidates[f"{repo}#{it['number']}"] = {
-                    "repo": repo, "num": it["number"], "title": it["title"],
-                    "url": it["html_url"], "created": it["created_at"][:10],
-                    "body": it.get("body") or "",
-                    "author": (it.get("user") or {}).get("login", ""),
-                }
+    now = datetime.now(timezone.utc)
+    floor = now - timedelta(hours=MAX_LOOKBACK_H)
+    since = floor
+    if state.get("last_scan"):
+        try:
+            since = max(floor, datetime.fromisoformat(state["last_scan"]))
+        except ValueError:
+            pass
+    stamp = since.strftime("%Y-%m-%dT%H:%M:%SZ")
+    print(f"{len(owners)} owners, issues created since {stamp}", flush=True)
 
-    # Expensive pass: only on keys we have never evaluated.
-    unseen = [k for k in candidates if k not in seen]
-    print(f"{len(candidates)} candidate(s), {len(unseen)} never checked before",
-          flush=True)
+    raw = {}
+    for b in range(0, len(owners), BATCH):
+        chunk = owners[b:b + BATCH]
+        q = (" ".join(f"org:{o}" for o in chunk)
+             + f" is:issue is:open no:assignee created:>={stamp}")
+        for it in search(q):
+            m = re.match(r"https?://github\.com/([^/]+)/([^/]+)/issues/",
+                         it["html_url"])
+            if m:
+                raw[f"{m.group(1)}/{m.group(2)}#{it['number']}"] = (it, m.group(1))
+    print(f"{len(raw)} new issues found", flush=True)
 
-    new_free = []
-    evaluated = set()
-    for key in unseen:
-        c = candidates[key]
-        verdict = is_free(c["repo"], c["num"], c.get("body", ""), c.get("author", ""))
-        if verdict is None:
-            continue          # leave unseen; re-check next run
-        evaluated.add(key)
-        if verdict:
-            new_free.append(c)
+    # Gates 1 and 2, before spending any request on vetting.
+    shortlist = []
+    for key, (it, owner) in raw.items():
+        if key in seen:
+            continue
+        labels = [l["name"] for l in it.get("labels", [])]
+        if NOISE_TITLE.search(it["title"]):
+            continue
+        if NOISE_REPO.search(key.rsplit("#", 1)[0].split("/")[-1]):
+            continue
+        keep, beg = interesting(labels, owner)
+        if not keep:
+            continue
+        repo, num = key.rsplit("#", 1)
+        shortlist.append({"repo": repo, "num": int(num), "title": it["title"],
+                          "url": it["html_url"], "created": it["created_at"],
+                          "labels": labels, "beginner": beg, "owner": owner,
+                          "body": it.get("body") or "",
+                          "author": (it.get("user") or {}).get("login", "")})
+    print(f"{len(shortlist)} worth vetting", flush=True)
 
-    still_free = [candidates[k] for k in state.get("free", []) if k in candidates]
-    all_free = still_free + new_free
+    free, evaluated = [], set()
+    for c in shortlist:
+        v = is_free(c["repo"], c["num"], c["body"], c["author"])
+        if v is None:
+            continue                       # leave unseen; re-check next run
+        evaluated.add(f"{c['repo']}#{c['num']}")
+        if v:
+            free.append(c)
+    free.sort(key=lambda c: (not c["beginner"], c["created"]))
 
-    # Only record issues we actually managed to evaluate.
-    json.dump({"seen": sorted(seen | evaluated),
-               "free": sorted({f"{i['repo']}#{i['num']}" for i in all_free}),
-               "updated": datetime.now(timezone.utc).isoformat()},
+    json.dump({"seen": sorted(seen | evaluated)[-4000:],
+               "free": sorted(f"{c['repo']}#{c['num']}" for c in free),
+               "last_scan": now.isoformat(),
+               "updated": now.isoformat()},
               open(STATE, "w", encoding="utf-8"), indent=1)
 
     with open(LATEST, "w", encoding="utf-8") as fh:
-        fh.write(f"# GSoC watcher\n\nLast run: "
-                 f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC\n\n")
-        if new_free and not first_run:
-            fh.write(f"## New this run ({len(new_free)})\n\n")
-            for i in new_free:
-                fh.write(f"- **[{i['repo']}#{i['num']}]({i['url']})** {i['title']}\n")
-            fh.write("\n")
-        fh.write(f"## Currently free ({len(all_free)})\n\n")
-        for i in sorted(all_free, key=lambda x: (x["repo"], -x["num"])):
-            fh.write(f"- [{i['repo']}#{i['num']}]({i['url']}) {i['title']}\n")
+        fh.write(f"# GSoC watcher\n\nLast run: {now:%Y-%m-%d %H:%M} UTC  \n"
+                 f"Watching **{len(owners)}** GSoC org GitHubs.\n\n")
+        fh.write(f"Scanned issues opened since {stamp}: **{len(raw)}** new, "
+                 f"**{len(shortlist)}** passed the noise/interest filter, "
+                 f"**{len(free)}** genuinely free.\n\n")
+        if free:
+            fh.write("## Free to claim\n\n")
+            for c in free:
+                star = " **[beginner]**" if c["beginner"] else ""
+                fh.write(f"- [{c['repo']}#{c['num']}]({c['url']}){star} "
+                         f"{c['title']}\n")
 
-    if first_run:
-        print(f"First run: recorded {len(all_free)} free issue(s), no push.",
-              flush=True)
-    elif new_free:
-        print(f"{len(new_free)} NEW free issue(s)", flush=True)
-        for i in new_free:
-            print(f"   {i['repo']}#{i['num']} {i['title'][:70]}", flush=True)
-        notify(new_free)
+    if free:
+        print(f"{len(free)} free issue(s)", flush=True)
+        for c in free[:20]:
+            print(f"   {c['repo']}#{c['num']} {c['title'][:70]}", flush=True)
+        notify(free[:MAX_PUSH], max(0, len(free) - MAX_PUSH))
     else:
-        print(f"No new issues ({len(all_free)} still free)", flush=True)
+        print("nothing new and free this run", flush=True)
     return 0
 
 

@@ -1,0 +1,1214 @@
+{
+ "names": {
+  "52North": [
+   "52\u00b0North Spatial Information Research GmbH"
+  ],
+  "AFLplusplus": [
+   "AFLplusplus"
+  ],
+  "AOSSIE-Org": [
+   "AOSSIE"
+  ],
+  "Appleseed": [
+   "appleseed"
+  ],
+  "ArduPilot": [
+   "ArduPilot"
+  ],
+  "BRL-CAD": [
+   "BRL-CAD"
+  ],
+  "BioGearsEngine": [
+   "BioGears"
+  ],
+  "CCExtractor": [
+   "CCExtractor Development"
+  ],
+  "CGAL": [
+   "CGAL Project"
+  ],
+  "Catrobat": [
+   "Catrobat",
+   "International Catrobat Association"
+  ],
+  "CityOfBoston": [
+   "Mayor's Office of New Urban Mechanics"
+  ],
+  "Cloud-CV": [
+   "CloudCV"
+  ],
+  "Ensembl": [
+   "Genome Assembly and Annotation"
+  ],
+  "FRRouting": [
+   "FRRouting"
+  ],
+  "GDevelopApp": [
+   "GDevelop"
+  ],
+  "GNOME": [
+   "GNOME"
+  ],
+  "GeomScale": [
+   "GeomScale"
+  ],
+  "GraphiteEditor": [
+   "Graphite"
+  ],
+  "HSF": [
+   "CERN-HSF"
+  ],
+  "Homebrew": [
+   "Homebrew"
+  ],
+  "I-TECH-UW": [
+   "OpenELIS Global"
+  ],
+  "INCF": [
+   "INCF"
+  ],
+  "InternetHealthReport": [
+   "Internet Health Report"
+  ],
+  "JabRef": [
+   "JabRef e.V."
+  ],
+  "JuliaLang": [
+   "The Julia Language"
+  ],
+  "KolibriOS": [
+   "KolibriOS Project Team"
+  ],
+  "LinuxFoundationGSoC": [
+   "The Linux Foundation"
+  ],
+  "LiquidGalaxyLAB": [
+   "Liquid Galaxy project"
+  ],
+  "MDAnalysis": [
+   "MDAnalysis"
+  ],
+  "ML4SCI": [
+   "Machine Learning for Science (ML4SCI)"
+  ],
+  "MariaDB": [
+   "MariaDB"
+  ],
+  "NISYSLAB": [
+   "Department of Biomedical Informatics, Emory University"
+  ],
+  "NetBSD": [
+   "The NetBSD Foundation"
+  ],
+  "Netflix": [
+   "Mantis",
+   "Metaflow"
+  ],
+  "OBF": [
+   "Open Bioinformatics Foundation (OBF)"
+  ],
+  "OSGeo": [
+   "OSGeo",
+   "OSGeo (Open Source Geospatial Foundation)"
+  ],
+  "OSIPI": [
+   "Open Science Initiative for Perfusion Imaging"
+  ],
+  "OSeMOSYS": [
+   "United Nations Office of Information Communication Technology"
+  ],
+  "OpenAstronomy": [
+   "openastronomy"
+  ],
+  "OpenHMD": [
+   "OpenHMD"
+  ],
+  "OpenMS": [
+   "OpenMS",
+   "OpenMS Inc"
+  ],
+  "OpenMined": [
+   "OpenMined"
+  ],
+  "OpenRefine": [
+   "OpenRefine"
+  ],
+  "OpenRoberta": [
+   "Open Roberta"
+  ],
+  "OpenScienceLabs": [
+   "Open Science Labs"
+  ],
+  "PAIR-code,https:": [
+   "Responsible AI and Human Centred Technology"
+  ],
+  "PalisadoesFoundation": [
+   "The Palisadoes Foundation"
+  ],
+  "PointCloudLibrary": [
+   "Point Cloud Library"
+  ],
+  "PowerDNS": [
+   "PowerDNS"
+  ],
+  "QubesOS": [
+   "Qubes OS"
+  ],
+  "RADAR-base": [
+   "RADAR-base"
+  ],
+  "RedHenLab": [
+   "Red Hen Lab"
+  ],
+  "RocketChat": [
+   "Rocket.Chat",
+   "rocket.chat"
+  ],
+  "STEllAR-GROUP": [
+   "Ste||ar group"
+  ],
+  "SeaQL": [
+   "SeaQL"
+  ],
+  "Submitty": [
+   "Submitty"
+  ],
+  "SymbiFlow": [
+   "SymbiFlow"
+  ],
+  "The-OpenROAD-Project": [
+   "The OpenROAD Initiative"
+  ],
+  "XmacsLabs": [
+   "MoganLab"
+  ],
+  "aboutcode-org": [
+   "AboutCode"
+  ],
+  "accordproject": [
+   "Accord Project"
+  ],
+  "amahi": [
+   "Amahi"
+  ],
+  "anitab-org": [
+   "AnitaB.org Open Source"
+  ],
+  "ankidroid": [
+   "AnkiDroid"
+  ],
+  "apache": [
+   "Apache DataFusion",
+   "Apache Software Foundation",
+   "The Apache Software Foundation"
+  ],
+  "apertium": [
+   "Apertium"
+  ],
+  "arduino": [
+   "Arduino"
+  ],
+  "asyncapi": [
+   "AsyncAPI"
+  ],
+  "audacity": [
+   "Audacity"
+  ],
+  "beagleboard": [
+   "BeagleBoard.org Foundation"
+  ],
+  "bench-routes": [
+   "Bench-Routes"
+  ],
+  "boa-dev": [
+   "Boa"
+  ],
+  "c2siorg": [
+   "C2SI"
+  ],
+  "cBioPortal": [
+   "cBioPortal for Cancer Genomics"
+  ],
+  "camicroscope": [
+   "caMicroscope"
+  ],
+  "carbon-language": [
+   "Carbon Language"
+  ],
+  "casbin": [
+   "Casbin"
+  ],
+  "castoredc": [
+   "CASTOR"
+  ],
+  "centerofci": [
+   "Mathesar"
+  ],
+  "ceph": [
+   "Ceph"
+  ],
+  "chaoss": [
+   "CHAOSS"
+  ],
+  "chapel-lang": [
+   "Chapel"
+  ],
+  "checkpoint-restore": [
+   "CRIU"
+  ],
+  "checkstyle": [
+   "Checkstyle",
+   "checkstyle"
+  ],
+  "chicagopcdc": [
+   "Data for the Common Good"
+  ],
+  "chipsalliance": [
+   "CHIPS Alliance"
+  ],
+  "cilium": [
+   "Cilium"
+  ],
+  "circuitverse": [
+   "CircuitVerse.org"
+  ],
+  "cityofboston": [
+   "City of Boston"
+  ],
+  "civicrm": [
+   "CiviCRM"
+  ],
+  "cncf": [
+   "CNCF"
+  ],
+  "coala": [
+   "coala"
+  ],
+  "cockpit-project": [
+   "Cockpit Project"
+  ],
+  "creativecommons": [
+   "Creative Commons"
+  ],
+  "cvat-ai": [
+   "CVAT"
+  ],
+  "dart-lang": [
+   "Dart"
+  ],
+  "dbpedia": [
+   "DBpedia"
+  ],
+  "deepchem": [
+   "DeepChem"
+  ],
+  "deeppavlov": [
+   "DeepPavlov"
+  ],
+  "django": [
+   "Django Software Foundation"
+  ],
+  "dlang": [
+   "D Language Foundation"
+  ],
+  "dora-rs": [
+   "dora-rs"
+  ],
+  "drupal": [
+   "Drupal"
+  ],
+  "eclipse": [
+   "Eclipse Foundation"
+  ],
+  "eclipse-sw360": [
+   "SW360"
+  ],
+  "eellak": [
+   "Open Technologies Alliance - GFOSS"
+  ],
+  "elastic": [
+   "Elastic"
+  ],
+  "electron": [
+   "Electron"
+  ],
+  "elm-tooling": [
+   "Elm Tooling"
+  ],
+  "embox": [
+   "Embox"
+  ],
+  "enigma-dev": [
+   "The ENIGMA Team"
+  ],
+  "eunomia-bpf": [
+   "eunomia-bpf"
+  ],
+  "fortran-lang": [
+   "Fortran-lang"
+  ],
+  "foss42": [
+   "API Dash"
+  ],
+  "fossasia": [
+   "FOSSASIA"
+  ],
+  "fossi-foundation": [
+   "Free and Open Source Silicon Foundation"
+  ],
+  "fossology": [
+   "FOSSology"
+  ],
+  "freebsd": [
+   "FreeBSD Project"
+  ],
+  "freecad": [
+   "FreeCAD"
+  ],
+  "freifunk": [
+   "freifunk"
+  ],
+  "ga4gh": [
+   "Global Alliance for Genomics and Health"
+  ],
+  "gambitproject": [
+   "Gambit: The package for computation in game theory"
+  ],
+  "gc-os-ai": [
+   "German Center for Open Source AI"
+  ],
+  "getshogun": [
+   "Shogun"
+  ],
+  "git": [
+   "Git"
+  ],
+  "gnss-sdr": [
+   "GNSS-SDR"
+  ],
+  "gnuradio": [
+   "GNU Radio"
+  ],
+  "godotengine": [
+   "Godot Engine"
+  ],
+  "google": [
+   "GCP Scanner"
+  ],
+  "google-deepmind": [
+   "Google DeepMind"
+  ],
+  "google-gemini": [
+   "Gemini CLI"
+  ],
+  "gpac": [
+   "GPAC"
+  ],
+  "gprMax": [
+   "gprMax"
+  ],
+  "grame-cncm": [
+   "GRAME"
+  ],
+  "gvisor": [
+   "gVisor"
+  ],
+  "halide": [
+   "Halide"
+  ],
+  "haskell": [
+   "Haskell.org"
+  ],
+  "hazelcast": [
+   "Hazelcast"
+  ],
+  "helmholtz-analytics": [
+   "Forschungszentrum J\u00fclich"
+  ],
+  "honeynet": [
+   "The Honeynet Project"
+  ],
+  "humanai-foundation": [
+   "HumanAI"
+  ],
+  "hydra-ecosystem": [
+   "Hydra Ecosystem"
+  ],
+  "inclusive-design": [
+   "Inclusive Design Institute"
+  ],
+  "intel": [
+   "Intel Video and Audio for Linux"
+  ],
+  "internetarchive": [
+   "Internet Archive"
+  ],
+  "invesalius": [
+   "Invesalius"
+  ],
+  "ioos": [
+   "IOOS"
+  ],
+  "isl-org": [
+   "Open3D team"
+  ],
+  "javapathfinder": [
+   "Java PathFinder",
+   "The JPF team"
+  ],
+  "jax-ml": [
+   "JAX and Keras"
+  ],
+  "jbossas": [
+   "JBoss Community"
+  ],
+  "jderobot": [
+   "JdeRobot"
+  ],
+  "jenkins-x": [
+   "Jenkins X"
+  ],
+  "jenkinsci": [
+   "Jenkins"
+  ],
+  "jetbrains": [
+   "Kotlin Foundation"
+  ],
+  "jina-ai": [
+   "Jina AI"
+  ],
+  "jitsi": [
+   "Jitsi"
+  ],
+  "joomla": [
+   "Joomla!"
+  ],
+  "json-schema-org": [
+   "JSON Schema"
+  ],
+  "keploy": [
+   "Keploy"
+  ],
+  "keptn": [
+   "Keptn"
+  ],
+  "konflux-ci": [
+   "Konflux"
+  ],
+  "koordinates": [
+   "Kart Project"
+  ],
+  "kornia": [
+   "Kornia"
+  ],
+  "kro-run": [
+   "kro | Kube Resource Orchestrator"
+  ],
+  "kubeflow": [
+   "Kubeflow"
+  ],
+  "kubevirt": [
+   "KubeVirt"
+  ],
+  "laurent22": [
+   "Joplin"
+  ],
+  "learning-unlimited": [
+   "Learning Unlimited"
+  ],
+  "learningequality": [
+   "Learning Equality"
+  ],
+  "librespacefoundation": [
+   "Libre Space Foundation"
+  ],
+  "libreswan": [
+   "The Libreswan Project"
+  ],
+  "linkerd": [
+   "Linkerd"
+  ],
+  "llvm": [
+   "LLVM Compiler Infrastructure"
+  ],
+  "lowRISC": [
+   "lowRISC"
+  ],
+  "macports": [
+   "MacPorts"
+  ],
+  "malariagen": [
+   "MalariaGEN"
+  ],
+  "mapeditor": [
+   "Tiled"
+  ],
+  "matrix-org": [
+   "Matrix",
+   "Matrix.org"
+  ],
+  "mautic": [
+   "Mautic"
+  ],
+  "mediacloud": [
+   "Media Cloud"
+  ],
+  "merledu": [
+   "Micro Electronics Research Lab - UITU"
+  ],
+  "meshery": [
+   "Meshery"
+  ],
+  "metabrainz": [
+   "MetaBrainz Foundation Inc"
+  ],
+  "metacall": [
+   "MetaCall"
+  ],
+  "mggg": [
+   "MGGG Redistricting Lab"
+  ],
+  "mit-cml": [
+   "MIT App Inventor"
+  ],
+  "mixxxdj": [
+   "Mixxx"
+  ],
+  "mllam": [
+   "MLLAM"
+  ],
+  "mlpack": [
+   "mlpack"
+  ],
+  "mofa-org": [
+   "MoFA Org"
+  ],
+  "moira-alert": [
+   "Moira"
+  ],
+  "moja-global": [
+   "moja global"
+  ],
+  "mozilla": [
+   "Mozilla"
+  ],
+  "musescore": [
+   "MuseScore"
+  ],
+  "mzmine": [
+   "MZmine"
+  ],
+  "navidrome": [
+   "Navidrome"
+  ],
+  "neovim": [
+   "Neovim"
+  ],
+  "netty": [
+   "Netty"
+  ],
+  "neuroinformatics-unit": [
+   "Neuroinformatics Unit"
+  ],
+  "neutralinojs": [
+   "Neutralinojs"
+  ],
+  "nightwatchjs": [
+   "Nightwatch.js"
+  ],
+  "nixos": [
+   "NixOS Foundation"
+  ],
+  "nrnb": [
+   "National Resource for Network Biology (NRNB)"
+  ],
+  "numfocus": [
+   "NumFOCUS"
+  ],
+  "nvaccess": [
+   "NV Access"
+  ],
+  "ohcnetwork": [
+   "Open HealthCare Network"
+  ],
+  "omegaup": [
+   "omegaUp"
+  ],
+  "onebusaway": [
+   "Open Transit Software Foundation"
+  ],
+  "open2c": [
+   "Open Chromosome Collective"
+  ],
+  "openSUSE": [
+   "openSUSE Project"
+  ],
+  "openchemistry": [
+   "Open Chemistry"
+  ],
+  "openclimatefix": [
+   "Open Climate Fix"
+  ],
+  "opencv": [
+   "OpenCV"
+  ],
+  "openemr": [
+   "OpenEMR"
+  ],
+  "openfoodfacts": [
+   "Open Food Facts"
+  ],
+  "openmf": [
+   "The Mifos Initiative"
+  ],
+  "openmrs": [
+   "OpenMRS"
+  ],
+  "openrobotics": [
+   "Open Robotics"
+  ],
+  "openstreetmap": [
+   "OpenStreetMap"
+  ],
+  "openvinotoolkit": [
+   "OpenVINO Toolkit"
+  ],
+  "openwisp": [
+   "OpenWISP"
+  ],
+  "oppia": [
+   "Oppia Foundation"
+  ],
+  "orcasound": [
+   "Orcasound"
+  ],
+  "organicmaps": [
+   "Organic Maps"
+  ],
+  "owasp": [
+   "OWASP Foundation"
+  ],
+  "owid": [
+   "Our World In Data"
+  ],
+  "p4lang": [
+   "The P4 Language Consortium"
+  ],
+  "pal-robotics": [
+   "PAL Robotics"
+  ],
+  "pecanproject": [
+   "PEcAn Project"
+  ],
+  "percona": [
+   "Percona"
+  ],
+  "performancecopilot": [
+   "Performance Co-Pilot"
+  ],
+  "pharo-project": [
+   "Pharo Consortium"
+  ],
+  "plan9foundation": [
+   "Plan 9 Foundation"
+  ],
+  "plone": [
+   "Plone Foundation"
+  ],
+  "polypheny": [
+   "Polypheny"
+  ],
+  "postman-open-technologies": [
+   "Postman"
+  ],
+  "precice": [
+   "preCICE"
+  ],
+  "processing": [
+   "Processing Foundation"
+  ],
+  "projectmesa": [
+   "Project Mesa"
+  ],
+  "prometheus-operator": [
+   "Prometheus-Operator"
+  ],
+  "publiclab": [
+   "Public Lab"
+  ],
+  "qdrant": [
+   "Qdrant"
+  ],
+  "radareorg": [
+   "Radare"
+  ],
+  "rapid7": [
+   "Metasploit"
+  ],
+  "react-native-elements": [
+   "React Native Elements"
+  ],
+  "reactos": [
+   "ReactOS",
+   "ReactOS Foundation"
+  ],
+  "rizinorg": [
+   "Rizin"
+  ],
+  "robocomp": [
+   "RoboComp"
+  ],
+  "robolectric": [
+   "Robolectric"
+  ],
+  "ros-planning": [
+   "MoveIt"
+  ],
+  "rspamd": [
+   "Rspamd"
+  ],
+  "ruby": [
+   "Ruby"
+  ],
+  "rust-lang": [
+   "The Rust Foundation"
+  ],
+  "ruxailab": [
+   "Uramaki LAB"
+  ],
+  "samba-team": [
+   "Samba"
+  ],
+  "sanger-tol": [
+   "Wellcome Sanger Tree of Life"
+  ],
+  "scala": [
+   "Scala Center"
+  ],
+  "scorelab": [
+   "SCoRe Lab"
+  ],
+  "scummvm": [
+   "ScummVM"
+  ],
+  "spcl": [
+   "Scalable Parallel Computing Laboratory"
+  ],
+  "spdx": [
+   "SPDX"
+  ],
+  "sqlancer": [
+   "SQLancer"
+  ],
+  "stdlib-js": [
+   "stdlib"
+  ],
+  "stjude-rust-labs": [
+   "St. Jude Children's Research Hospital"
+  ],
+  "strace": [
+   "strace"
+  ],
+  "stratosphereips": [
+   "Stratosphere Laboratory, Czech Technical University in Prague"
+  ],
+  "su2code": [
+   "Stichting SU2"
+  ],
+  "sugarlabs": [
+   "Sugar Labs"
+  ],
+  "swiftlang": [
+   "Swift"
+  ],
+  "sympy": [
+   "SymPy"
+  ],
+  "synfig": [
+   "Synfig"
+  ],
+  "syslog-ng": [
+   "syslog-ng"
+  ],
+  "tarantool": [
+   "Tarantool"
+  ],
+  "tardis-sn": [
+   "TARDIS RT Collaboration",
+   "TARDIS-SN"
+  ],
+  "tensorflow": [
+   "TensorFlow"
+  ],
+  "theochem": [
+   "QC-Devs"
+  ],
+  "tianocore": [
+   "TianoCore"
+  ],
+  "typelevel": [
+   "Typelevel"
+  ],
+  "typetools": [
+   "Checker Framework"
+  ],
+  "uaanchorage": [
+   "Alaska"
+  ],
+  "uc-cdis": [
+   "Center for Translational Data Science"
+  ],
+  "uccross": [
+   "UC OSPO"
+  ],
+  "unicode-org": [
+   "Unicode, Inc."
+  ],
+  "unifyai": [
+   "Ivy (lets-unify.ai)"
+  ],
+  "unikraft": [
+   "Unikraft"
+  ],
+  "vitrivr": [
+   "vitrivr"
+  ],
+  "wagtail": [
+   "Wagtail"
+  ],
+  "waycrate": [
+   "Waycrate"
+  ],
+  "weaviate": [
+   "Weaviate"
+  ],
+  "webpack": [
+   "webpack"
+  ],
+  "wikiloop": [
+   "Project WikiLoop"
+  ],
+  "wireshark": [
+   "Wireshark"
+  ],
+  "xbmc": [
+   "Kodi"
+  ],
+  "xiph": [
+   "Xiph.Org Foundation"
+  ],
+  "xline-kv": [
+   "DatenLord"
+  ],
+  "xsf": [
+   "XMPP Standards Foundation"
+  ],
+  "zendalona": [
+   "Zendalona"
+  ],
+  "zulip": [
+   "Zulip"
+  ]
+ },
+ "owners": [
+  "52North",
+  "AFLplusplus",
+  "AOSSIE-Org",
+  "Appleseed",
+  "ArduPilot",
+  "BRL-CAD",
+  "BioGearsEngine",
+  "CCExtractor",
+  "CGAL",
+  "Catrobat",
+  "CityOfBoston",
+  "Cloud-CV",
+  "Ensembl",
+  "FRRouting",
+  "GDevelopApp",
+  "GNOME",
+  "GeomScale",
+  "GraphiteEditor",
+  "HSF",
+  "Homebrew",
+  "I-TECH-UW",
+  "INCF",
+  "InternetHealthReport",
+  "JabRef",
+  "JuliaLang",
+  "KolibriOS",
+  "LinuxFoundationGSoC",
+  "LiquidGalaxyLAB",
+  "MDAnalysis",
+  "ML4SCI",
+  "MariaDB",
+  "NISYSLAB",
+  "NetBSD",
+  "Netflix",
+  "OBF",
+  "OSGeo",
+  "OSIPI",
+  "OSeMOSYS",
+  "OpenAstronomy",
+  "OpenHMD",
+  "OpenMS",
+  "OpenMined",
+  "OpenRefine",
+  "OpenRoberta",
+  "OpenScienceLabs",
+  "PAIR-code,https:",
+  "PalisadoesFoundation",
+  "PointCloudLibrary",
+  "PowerDNS",
+  "QubesOS",
+  "RADAR-base",
+  "RedHenLab",
+  "RocketChat",
+  "STEllAR-GROUP",
+  "SeaQL",
+  "Submitty",
+  "SymbiFlow",
+  "The-OpenROAD-Project",
+  "XmacsLabs",
+  "aboutcode-org",
+  "accordproject",
+  "amahi",
+  "anitab-org",
+  "ankidroid",
+  "apache",
+  "apertium",
+  "arduino",
+  "asyncapi",
+  "audacity",
+  "beagleboard",
+  "bench-routes",
+  "boa-dev",
+  "c2siorg",
+  "cBioPortal",
+  "camicroscope",
+  "carbon-language",
+  "casbin",
+  "castoredc",
+  "centerofci",
+  "ceph",
+  "chaoss",
+  "chapel-lang",
+  "checkpoint-restore",
+  "checkstyle",
+  "chicagopcdc",
+  "chipsalliance",
+  "cilium",
+  "circuitverse",
+  "cityofboston",
+  "civicrm",
+  "cncf",
+  "coala",
+  "cockpit-project",
+  "creativecommons",
+  "cvat-ai",
+  "dart-lang",
+  "dbpedia",
+  "deepchem",
+  "deeppavlov",
+  "django",
+  "dlang",
+  "dora-rs",
+  "drupal",
+  "eclipse",
+  "eclipse-sw360",
+  "eellak",
+  "elastic",
+  "electron",
+  "elm-tooling",
+  "embox",
+  "enigma-dev",
+  "eunomia-bpf",
+  "fortran-lang",
+  "foss42",
+  "fossasia",
+  "fossi-foundation",
+  "fossology",
+  "freebsd",
+  "freecad",
+  "freifunk",
+  "ga4gh",
+  "gambitproject",
+  "gc-os-ai",
+  "getshogun",
+  "git",
+  "gnss-sdr",
+  "gnuradio",
+  "godotengine",
+  "google",
+  "google-deepmind",
+  "google-gemini",
+  "gpac",
+  "gprMax",
+  "grame-cncm",
+  "gvisor",
+  "halide",
+  "haskell",
+  "hazelcast",
+  "helmholtz-analytics",
+  "honeynet",
+  "humanai-foundation",
+  "hydra-ecosystem",
+  "inclusive-design",
+  "intel",
+  "internetarchive",
+  "invesalius",
+  "ioos",
+  "isl-org",
+  "javapathfinder",
+  "jax-ml",
+  "jbossas",
+  "jderobot",
+  "jenkins-x",
+  "jenkinsci",
+  "jetbrains",
+  "jina-ai",
+  "jitsi",
+  "joomla",
+  "json-schema-org",
+  "keploy",
+  "keptn",
+  "konflux-ci",
+  "koordinates",
+  "kornia",
+  "kro-run",
+  "kubeflow",
+  "kubevirt",
+  "laurent22",
+  "learning-unlimited",
+  "learningequality",
+  "librespacefoundation",
+  "libreswan",
+  "linkerd",
+  "llvm",
+  "lowRISC",
+  "macports",
+  "malariagen",
+  "mapeditor",
+  "matrix-org",
+  "mautic",
+  "mediacloud",
+  "merledu",
+  "meshery",
+  "metabrainz",
+  "metacall",
+  "mggg",
+  "mit-cml",
+  "mixxxdj",
+  "mllam",
+  "mlpack",
+  "mofa-org",
+  "moira-alert",
+  "moja-global",
+  "mozilla",
+  "musescore",
+  "mzmine",
+  "navidrome",
+  "neovim",
+  "netty",
+  "neuroinformatics-unit",
+  "neutralinojs",
+  "nightwatchjs",
+  "nixos",
+  "nrnb",
+  "numfocus",
+  "nvaccess",
+  "ohcnetwork",
+  "omegaup",
+  "onebusaway",
+  "open2c",
+  "openSUSE",
+  "openchemistry",
+  "openclimatefix",
+  "opencv",
+  "openemr",
+  "openfoodfacts",
+  "openmf",
+  "openmrs",
+  "openrobotics",
+  "openstreetmap",
+  "openvinotoolkit",
+  "openwisp",
+  "oppia",
+  "orcasound",
+  "organicmaps",
+  "owasp",
+  "owid",
+  "p4lang",
+  "pal-robotics",
+  "pecanproject",
+  "percona",
+  "performancecopilot",
+  "pharo-project",
+  "plan9foundation",
+  "plone",
+  "polypheny",
+  "postman-open-technologies",
+  "precice",
+  "processing",
+  "projectmesa",
+  "prometheus-operator",
+  "publiclab",
+  "qdrant",
+  "radareorg",
+  "rapid7",
+  "react-native-elements",
+  "reactos",
+  "rizinorg",
+  "robocomp",
+  "robolectric",
+  "ros-planning",
+  "rspamd",
+  "ruby",
+  "rust-lang",
+  "ruxailab",
+  "samba-team",
+  "sanger-tol",
+  "scala",
+  "scorelab",
+  "scummvm",
+  "spcl",
+  "spdx",
+  "sqlancer",
+  "stdlib-js",
+  "stjude-rust-labs",
+  "strace",
+  "stratosphereips",
+  "su2code",
+  "sugarlabs",
+  "swiftlang",
+  "sympy",
+  "synfig",
+  "syslog-ng",
+  "tarantool",
+  "tardis-sn",
+  "tensorflow",
+  "theochem",
+  "tianocore",
+  "typelevel",
+  "typetools",
+  "uaanchorage",
+  "uc-cdis",
+  "uccross",
+  "unicode-org",
+  "unifyai",
+  "unikraft",
+  "vitrivr",
+  "wagtail",
+  "waycrate",
+  "weaviate",
+  "webpack",
+  "wikiloop",
+  "wireshark",
+  "xbmc",
+  "xiph",
+  "xline-kv",
+  "xsf",
+  "zendalona",
+  "zulip"
+ ]
+}
