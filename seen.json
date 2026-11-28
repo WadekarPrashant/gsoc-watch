@@ -125,6 +125,7 @@
   "godotengine/godot#125903",
   "godotengine/godot-docs#12538",
   "google/dtoolkit#166",
+  "google/dtoolkit#168",
   "learningequality/kolibri#16073",
   "learningequality/kolibri#16074",
   "learningequality/kolibri#16075",
@@ -172,7 +173,9 @@
   "zulip/zulip-terminal#1698",
   "zulip/zulip-terminal#1699"
  ],
- "free": [],
- "last_scan": "2026-11-28T15:01:09.685320+00:00",
- "updated": "2026-11-28T15:01:09.685320+00:00"
+ "free": [
+  "google/dtoolkit#168"
+ ],
+ "last_scan": "2026-11-28T15:15:37.428837+00:00",
+ "updated": "2026-11-28T15:15:37.428837+00:00"
 }
