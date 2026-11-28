@@ -1,10 +1,7 @@
 # GSoC watcher
 
-Last run: 2026-11-28 13:58 UTC  
+Last run: 2026-11-28 14:01 UTC  
 Watching **299** GSoC org GitHubs.
 
-Scanned issues opened since 2026-11-28T13:45:40Z: **8** new, **1** passed the noise/interest filter, **1** genuinely free.
+Scanned issues opened since 2026-11-28T13:58:47Z: **1** new, **0** passed the noise/interest filter, **0** genuinely free.
 
-## Free to claim
-
-- [AOSSIE-Org/Rein#530](https://github.com/AOSSIE-Org/Rein/issues/530) [Feature]: Match Extended Mode virtual display resolution to the connected client's screen
