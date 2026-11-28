@@ -113,6 +113,7 @@
   "learningequality/kolibri#16084",
   "llvm/llvm-project#246658",
   "llvm/llvm-project#246669",
+  "meshery/meshery#24534",
   "openfoodfacts/openfoodfacts-explorer#2282",
   "openfoodfacts/openfoodfacts-explorer#2286",
   "openfoodfacts/openfoodfacts-server#15595",
@@ -136,8 +137,8 @@
   "zulip/zulip-terminal#1699"
  ],
  "free": [
-  "godotengine/godot#125898"
+  "meshery/meshery#24534"
  ],
- "last_scan": "2026-11-28T06:01:11.030577+00:00",
- "updated": "2026-11-28T06:01:11.030577+00:00"
+ "last_scan": "2026-11-28T06:15:38.597003+00:00",
+ "updated": "2026-11-28T06:15:38.597003+00:00"
 }
