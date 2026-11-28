@@ -140,6 +140,7 @@
   "learningequality/kolibri#16089",
   "learningequality/kolibri#16092",
   "learningequality/kolibri#16093",
+  "learningequality/kolibri#16094",
   "llvm/llvm-project#246658",
   "llvm/llvm-project#246669",
   "meshery/meshery#24534",
@@ -171,9 +172,7 @@
   "zulip/zulip-terminal#1698",
   "zulip/zulip-terminal#1699"
  ],
- "free": [
-  "godotengine/godot#125903"
- ],
- "last_scan": "2026-11-28T14:45:41.371698+00:00",
- "updated": "2026-11-28T14:45:41.371698+00:00"
+ "free": [],
+ "last_scan": "2026-11-28T15:01:09.685320+00:00",
+ "updated": "2026-11-28T15:01:09.685320+00:00"
 }
