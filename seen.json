@@ -25,6 +25,7 @@
   "AOSSIE-Org/OpenVerifiableLLM#395",
   "AOSSIE-Org/OpenVerifiableLLM#397",
   "AOSSIE-Org/OpenVerifiableLLM#399",
+  "AOSSIE-Org/OpenVerifiableLLM#401",
   "AOSSIE-Org/PictoPy#1786",
   "AOSSIE-Org/PictoPy#1787",
   "AOSSIE-Org/PictoPy#1788",
@@ -143,6 +144,8 @@
   "learningequality/kolibri#16092",
   "learningequality/kolibri#16093",
   "learningequality/kolibri#16094",
+  "learningequality/kolibri#16095",
+  "learningequality/kolibri#16096",
   "llvm/llvm-project#246658",
   "llvm/llvm-project#246669",
   "meshery/meshery#24534",
@@ -175,8 +178,8 @@
   "zulip/zulip-terminal#1699"
  ],
  "free": [
-  "OWASP/Nest#5919"
+  "AOSSIE-Org/OpenVerifiableLLM#401"
  ],
- "last_scan": "2026-11-28T15:30:55.948677+00:00",
- "updated": "2026-11-28T15:30:55.948677+00:00"
+ "last_scan": "2026-11-28T15:45:35.482587+00:00",
+ "updated": "2026-11-28T15:45:35.482587+00:00"
 }
