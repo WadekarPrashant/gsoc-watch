@@ -41,8 +41,11 @@
   "OWASP/Nest#5911",
   "OWASP/Nest#5912",
   "OWASP/Nest#5914",
+  "OWASP/Nest#5917",
+  "OWASP/Nest#5918",
   "OWASP/Nettacker#1945",
   "OWASP/Nettacker#1950",
+  "OWASP/Nettacker#1951",
   "OWASP/OWASP-Agentic-AI-Goat#21",
   "OWASP/OWASP-Agentic-AI-Goat#22",
   "OWASP/OWASP-Agentic-AI-Goat#23",
@@ -150,8 +153,8 @@
   "zulip/zulip-terminal#1699"
  ],
  "free": [
-  "openfoodfacts/openfoodfacts-explorer#2289"
+  "OWASP/Nest#5917"
  ],
- "last_scan": "2026-11-28T10:15:36.981138+00:00",
- "updated": "2026-11-28T10:15:36.981138+00:00"
+ "last_scan": "2026-11-28T10:31:01.880191+00:00",
+ "updated": "2026-11-28T10:31:01.880191+00:00"
 }
