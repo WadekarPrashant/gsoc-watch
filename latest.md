@@ -1,10 +1,7 @@
 # GSoC watcher
 
-Last run: 2026-11-28 10:45 UTC  
+Last run: 2026-11-28 11:01 UTC  
 Watching **299** GSoC org GitHubs.
 
-Scanned issues opened since 2026-11-28T10:31:01Z: **5** new, **1** passed the noise/interest filter, **1** genuinely free.
+Scanned issues opened since 2026-11-28T10:45:36Z: **11** new, **1** passed the noise/interest filter, **0** genuinely free.
 
-## Free to claim
-
-- [AOSSIE-Org/PullRequestDashboard#73](https://github.com/AOSSIE-Org/PullRequestDashboard/issues/73) [BUG]: Valid JSON response with null risk field crashes dashboard rendering

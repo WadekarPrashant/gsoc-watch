@@ -126,6 +126,7 @@
   "learningequality/kolibri#16084",
   "learningequality/kolibri#16087",
   "learningequality/kolibri#16088",
+  "learningequality/kolibri#16089",
   "llvm/llvm-project#246658",
   "llvm/llvm-project#246669",
   "meshery/meshery#24534",
@@ -153,9 +154,7 @@
   "zulip/zulip-terminal#1698",
   "zulip/zulip-terminal#1699"
  ],
- "free": [
-  "AOSSIE-Org/PullRequestDashboard#73"
- ],
- "last_scan": "2026-11-28T10:45:36.120276+00:00",
- "updated": "2026-11-28T10:45:36.120276+00:00"
+ "free": [],
+ "last_scan": "2026-11-28T11:01:10.689672+00:00",
+ "updated": "2026-11-28T11:01:10.689672+00:00"
 }
