@@ -52,6 +52,7 @@
   "OWASP/Nest#5914",
   "OWASP/Nest#5917",
   "OWASP/Nest#5918",
+  "OWASP/Nest#5919",
   "OWASP/Nettacker#1945",
   "OWASP/Nettacker#1950",
   "OWASP/Nettacker#1951",
@@ -174,8 +175,8 @@
   "zulip/zulip-terminal#1699"
  ],
  "free": [
-  "google/dtoolkit#168"
+  "OWASP/Nest#5919"
  ],
- "last_scan": "2026-11-28T15:15:37.428837+00:00",
- "updated": "2026-11-28T15:15:37.428837+00:00"
+ "last_scan": "2026-11-28T15:30:55.948677+00:00",
+ "updated": "2026-11-28T15:30:55.948677+00:00"
 }
