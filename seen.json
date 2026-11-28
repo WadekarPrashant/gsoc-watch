@@ -122,6 +122,7 @@
   "godotengine/godot#125896",
   "godotengine/godot#125897",
   "godotengine/godot#125898",
+  "godotengine/godot#125903",
   "godotengine/godot-docs#12538",
   "google/dtoolkit#166",
   "learningequality/kolibri#16073",
@@ -171,8 +172,8 @@
   "zulip/zulip-terminal#1699"
  ],
  "free": [
-  "OneBusAway/wayfinder#770"
+  "godotengine/godot#125903"
  ],
- "last_scan": "2026-11-28T14:31:01.536361+00:00",
- "updated": "2026-11-28T14:31:01.536361+00:00"
+ "last_scan": "2026-11-28T14:45:41.371698+00:00",
+ "updated": "2026-11-28T14:45:41.371698+00:00"
 }
