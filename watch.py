@@ -269,7 +269,10 @@ def is_free(repo, num, body="", author=""):
             return False
         if ABANDON.search(cbody):
             last_release = c["created_at"]
-        elif CLAIM.search(cbody):
+        # ASSIGN_ME was only ever read against the body, but "Please do assign
+        # me the issue" is far more often a comment. CLAIM misses it because
+        # the object comes before "me" rather than after it.
+        elif CLAIM.search(cbody) or ASSIGN_ME.search(cbody):
             last_claim = c["created_at"]
     if last_claim is None:
         return True
