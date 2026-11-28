@@ -39,7 +39,9 @@
   "OWASP/Agentic-Evidence#25",
   "OWASP/Agentic-Evidence#26",
   "OWASP/Agentic-Evidence#27",
+  "OWASP/CheatSheetSeries#3052",
   "OWASP/DecodeBox#39",
+  "OWASP/DecodeBox#40",
   "OWASP/Nest#5909",
   "OWASP/Nest#5911",
   "OWASP/Nest#5912",
@@ -159,6 +161,6 @@
   "zulip/zulip-terminal#1699"
  ],
  "free": [],
- "last_scan": "2026-11-28T12:15:39.701271+00:00",
- "updated": "2026-11-28T12:15:39.701271+00:00"
+ "last_scan": "2026-11-28T12:30:57.557354+00:00",
+ "updated": "2026-11-28T12:30:57.557354+00:00"
 }
