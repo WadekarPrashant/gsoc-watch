@@ -93,6 +93,7 @@
   "godotengine/godot#125889",
   "godotengine/godot#125890",
   "godotengine/godot#125894",
+  "godotengine/godot#125895",
   "godotengine/godot-docs#12538",
   "google/dtoolkit#166",
   "learningequality/kolibri#16073",
@@ -128,8 +129,8 @@
   "zulip/zulip-terminal#1694"
  ],
  "free": [
-  "RocketChat/Rocket.Chat#44005"
+  "godotengine/godot#125895"
  ],
- "last_scan": "2026-11-28T03:01:11.722598+00:00",
- "updated": "2026-11-28T03:01:11.722598+00:00"
+ "last_scan": "2026-11-28T03:15:38.001094+00:00",
+ "updated": "2026-11-28T03:15:38.001094+00:00"
 }
