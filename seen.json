@@ -127,9 +127,12 @@
   "sugarlabs/musicblocks-v4#1098",
   "sugarlabs/musicblocks-v4#1099",
   "sugarlabs/musicblocks-v4#1100",
-  "zulip/zulip-terminal#1694"
+  "zulip/zulip-terminal#1694",
+  "zulip/zulip-terminal#1698"
  ],
- "free": [],
- "last_scan": "2026-11-28T04:15:42.158133+00:00",
- "updated": "2026-11-28T04:15:42.158133+00:00"
+ "free": [
+  "zulip/zulip-terminal#1698"
+ ],
+ "last_scan": "2026-11-28T04:30:56.016454+00:00",
+ "updated": "2026-11-28T04:30:56.016454+00:00"
 }
