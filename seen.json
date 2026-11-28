@@ -61,6 +61,7 @@
   "OWASP/cve-lite-cli#1863",
   "OWASP/cve-lite-cli#1864",
   "OWASP/cve-lite-cli#1865",
+  "OWASP/cve-lite-cli#1869",
   "OWASP/legacy2mcp#49",
   "OWASP/mastg#4047",
   "OWASP/www-project-api-security-testing-framework#204",
@@ -154,7 +155,9 @@
   "zulip/zulip-terminal#1698",
   "zulip/zulip-terminal#1699"
  ],
- "free": [],
- "last_scan": "2026-11-28T11:01:10.689672+00:00",
- "updated": "2026-11-28T11:01:10.689672+00:00"
+ "free": [
+  "OWASP/cve-lite-cli#1869"
+ ],
+ "last_scan": "2026-11-28T11:15:37.619482+00:00",
+ "updated": "2026-11-28T11:15:37.619482+00:00"
 }
