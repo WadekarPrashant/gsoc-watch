@@ -114,6 +114,7 @@
   "oppia/oppia#28309",
   "oppia/oppia#28311",
   "oppia/oppia-android#6585",
+  "stdlib-js/stdlib#16911",
   "sugarlabs/musicblocks-v4#1093",
   "sugarlabs/musicblocks-v4#1095",
   "sugarlabs/musicblocks-v4#1096",
@@ -124,6 +125,6 @@
   "zulip/zulip-terminal#1694"
  ],
  "free": [],
- "last_scan": "2026-11-28T00:15:43.458400+00:00",
- "updated": "2026-11-28T00:15:43.458400+00:00"
+ "last_scan": "2026-11-28T00:30:55.457377+00:00",
+ "updated": "2026-11-28T00:30:55.457377+00:00"
 }
