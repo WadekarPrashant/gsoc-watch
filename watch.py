@@ -178,7 +178,10 @@ BODY_CLAIM = re.compile(
     r"intend to|am going to|going to|want to|can|"
     # "I'd be glad to work on this if it is assigned to me" -- the politest
     # form, and the one that reads least like a claim while being one.
-    r"(be|am|'m) (glad|happy|willing|keen|pleased|available) to)\b[^.!?\n]{0,40}?"
+    # The "be/am" is often missing because the clause is joined on: "I'm new
+    # to the project and happy to submit a pull request". First person is
+    # still there, just further back, so the window before this does the work.
+    r"(be|am|'m)? ?(glad|happy|willing|keen|pleased|available) to)\b[^.!?\n]{0,40}?"
     r"\b(work(ing)? on (this|it)|take (this|it)|tackle (this|it)|"
     r"attempt (this|it)|pick (this|it) up|open(ing)? (a|the) (pr|pull request)|"
     r"submit(ting)? (a|the) (pr|pull request)|rais(e|ing) (a|the) (pr|pull request)|"
