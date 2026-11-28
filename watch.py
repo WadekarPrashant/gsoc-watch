@@ -118,6 +118,13 @@ ELIDED_CLAIM = re.compile(
     r"prepare)\s+(?:a|the|my)?\s*(?:draft\s+)?(?:pr|pull request|patch|fix)\b",
     re.I | re.M)
 
+# "Please assign this to me." No pronoun, no verb phrase -- an imperative, so
+# neither BODY_CLAIM (wants I/we) nor ELIDED_CLAIM (wants "glad to ...") sees
+# it. Unambiguous wherever it appears, so it is safe to read anywhere.
+ASSIGN_ME = re.compile(
+    r"\bassign\s+(this|it|that|the)?\s*(issue|ticket|task|one|bug|pr)?\s*to\s+me\b|"
+    r"\bassign\s+me\b|\bplease\s+assign\s+(this|it|me)\b|\bkindly\s+assign\b", re.I)
+
 # Labels that mean somebody already holds it, whatever the assignee field says.
 CLAIM_LABEL = re.compile(
     r"community-contribution-in-progress|contribution-in-progress|"
@@ -234,7 +241,8 @@ def is_free(repo, num, body="", author=""):
     failed call must NOT be read as "free", and the issue must stay unseen
     so the next run re-checks it."""
     if (SELF_PR.search(body or "") or BODY_CLAIM.search(body or "")
-            or ELIDED_CLAIM.search(body or "") or NOT_OPEN.search(body or "")):
+            or ELIDED_CLAIM.search(body or "") or ASSIGN_ME.search(body or "")
+            or NOT_OPEN.search(body or "")):
         return False
 
     timeline = api(f"/repos/{repo}/issues/{num}/timeline?per_page=100",
