@@ -23,6 +23,7 @@
   "AOSSIE-Org/OpenVerifiableLLM#392",
   "AOSSIE-Org/OpenVerifiableLLM#395",
   "AOSSIE-Org/OpenVerifiableLLM#397",
+  "AOSSIE-Org/OpenVerifiableLLM#399",
   "AOSSIE-Org/PictoPy#1786",
   "AOSSIE-Org/PictoPy#1787",
   "AOSSIE-Org/PictoPy#1788",
@@ -164,10 +165,8 @@
   "zulip/zulip-terminal#1699"
  ],
  "free": [
-  "openfoodfacts/openfoodfacts-explorer#2291",
-  "openfoodfacts/openfoodfacts-explorer#2292",
-  "openfoodfacts/openfoodfacts-explorer#2294"
+  "AOSSIE-Org/OpenVerifiableLLM#399"
  ],
- "last_scan": "2026-11-28T13:01:09.631337+00:00",
- "updated": "2026-11-28T13:01:09.631337+00:00"
+ "last_scan": "2026-11-28T13:15:38.732966+00:00",
+ "updated": "2026-11-28T13:15:38.732966+00:00"
 }
