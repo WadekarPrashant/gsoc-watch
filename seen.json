@@ -132,6 +132,7 @@
   "llvm/llvm-project#246669",
   "meshery/meshery#24534",
   "meshery/meshery.io#3317",
+  "meshery/meshery.io#3321",
   "openfoodfacts/openfoodfacts-explorer#2282",
   "openfoodfacts/openfoodfacts-explorer#2286",
   "openfoodfacts/openfoodfacts-explorer#2289",
@@ -156,6 +157,6 @@
   "zulip/zulip-terminal#1699"
  ],
  "free": [],
- "last_scan": "2026-11-28T11:45:38.006514+00:00",
- "updated": "2026-11-28T11:45:38.006514+00:00"
+ "last_scan": "2026-11-28T12:01:11.447110+00:00",
+ "updated": "2026-11-28T12:01:11.447110+00:00"
 }
